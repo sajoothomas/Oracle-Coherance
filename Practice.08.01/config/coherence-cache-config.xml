@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE cache-config SYSTEM "cache-config.dtd">
+
+<cache-config>
+
+  <caching-scheme-mapping>
+    //TODO: Place cache-mapping here
+  </caching-scheme-mapping>
+
+  <caching-schemes>
+    //TODO: Place transaction scheme here
+    
+    <invocation-scheme>
+      <scheme-name>example-invocation</scheme-name>
+      <service-name>InvocationService</service-name>
+
+      <autostart system-property="tangosol.coherence.invocation.autostart">true</autostart>
+    </invocation-scheme>
+
+  </caching-schemes>
+
+</cache-config>

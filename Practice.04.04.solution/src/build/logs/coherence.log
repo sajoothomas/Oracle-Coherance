@@ -1,0 +1,1568 @@
+2014-09-17 20:16:11.743/0.266 Oracle Coherence 3.6.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/D:/oracle/coherence/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2014-09-17 20:16:11.743/0.266 Oracle Coherence 3.6.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/D:/oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override-dev.xml"
+2014-09-17 20:16:11.743/0.266 Oracle Coherence 3.6.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/D:/oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override.xml"
+2014-09-17 20:16:11.758/0.281 Oracle Coherence 3.6.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 3.6.0.0 Build 17229
+ Grid Edition: Development mode
+Copyright (c) 2000, 2010, Oracle and/or its affiliates. All rights reserved.
+
+2014-09-17 20:16:11.992/0.515 Oracle Coherence GE 3.6.0.0 <Info> (thread=main, member=n/a): Loaded cache configuration from "file:/D:/oracle/student/practices/Practice.04.04.solution/config/coherence-cache-config.xml"
+2014-09-17 20:16:12.320/0.843 Oracle Coherence GE 3.6.0.0 <D4> (thread=main, member=n/a): TCMP bound to /10.191.223.200:8088 using SystemSocketProvider
+2014-09-17 20:16:12.897/0.250 Oracle Coherence 3.6.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/D:/oracle/coherence/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2014-09-17 20:16:12.897/0.250 Oracle Coherence 3.6.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/D:/oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override-dev.xml"
+2014-09-17 20:16:12.897/0.250 Oracle Coherence 3.6.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/D:/oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override.xml"
+2014-09-17 20:16:12.897/0.250 Oracle Coherence 3.6.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 3.6.0.0 Build 17229
+ Grid Edition: Development mode
+Copyright (c) 2000, 2010, Oracle and/or its affiliates. All rights reserved.
+
+2014-09-17 20:16:13.147/0.500 Oracle Coherence GE 3.6.0.0 <Info> (thread=main, member=n/a): Loaded cache configuration from "file:/D:/oracle/student/practices/Practice.04.04.solution/config/coherence-cache-config.xml"
+2014-09-17 20:16:13.474/0.827 Oracle Coherence GE 3.6.0.0 <D4> (thread=main, member=n/a): TCMP bound to /10.191.223.200:8090 using SystemSocketProvider
+2014-09-17 20:16:13.661/2.184 Oracle Coherence GE 3.6.0.0 <Info> (thread=Cluster, member=n/a): Created a new cluster "cluster:0xC4C1" with Member(Id=1, Timestamp=2014-09-17 20:16:12.335, Address=10.191.223.200:8088, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:7572, Role=CacheTesterCacheTester, Edition=Grid Edition, Mode=Development, CpuCount=4, SocketCount=4) UID=0x0ABFDFC8000001488413F06F6AC81F98
+2014-09-17 20:16:13.661/2.184 Oracle Coherence GE 3.6.0.0 <Info> (thread=main, member=n/a): Started cluster Name=cluster:0xC4C1
+
+Group{Address=224.3.6.0, Port=36000, TTL=0}
+
+MasterMemberSet
+  (
+  ThisMember=Member(Id=1, Timestamp=2014-09-17 20:16:12.335, Address=10.191.223.200:8088, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:7572, Role=CacheTesterCacheTester)
+  OldestMember=Member(Id=1, Timestamp=2014-09-17 20:16:12.335, Address=10.191.223.200:8088, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:7572, Role=CacheTesterCacheTester)
+  ActualMemberSet=MemberSet(Size=1, BitSetCount=2
+    Member(Id=1, Timestamp=2014-09-17 20:16:12.335, Address=10.191.223.200:8088, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:7572, Role=CacheTesterCacheTester)
+    )
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=0, BitSetCount=0
+    )
+  )
+
+TcpRing{Connections=[]}
+IpMonitor{AddressListSize=0}
+
+2014-09-17 20:16:13.677/2.200 Oracle Coherence GE 3.6.0.0 <D5> (thread=Invocation:Management, member=1): Service Management joined the cluster with senior service member 1
+2014-09-17 20:16:13.833/2.356 Oracle Coherence GE 3.6.0.0 <D5> (thread=DistributedCache, member=1): Service DistributedCache joined the cluster with senior service member 1
+2014-09-17 20:16:14.816/3.339 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=1): Member(Id=2, Timestamp=2014-09-17 20:16:14.816, Address=10.191.223.200:8090, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:8560, Role=CacheTesterCacheTester) joined Cluster with senior member 1
+2014-09-17 20:16:14.816/2.169 Oracle Coherence GE 3.6.0.0 <Info> (thread=Cluster, member=n/a): This Member(Id=2, Timestamp=2014-09-17 20:16:14.816, Address=10.191.223.200:8090, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:8560, Role=CacheTesterCacheTester, Edition=Grid Edition, Mode=Development, CpuCount=4, SocketCount=4) joined cluster "cluster:0xC4C1" with senior Member(Id=1, Timestamp=2014-09-17 20:16:12.335, Address=10.191.223.200:8088, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:7572, Role=CacheTesterCacheTester, Edition=Grid Edition, Mode=Development, CpuCount=4, SocketCount=4)
+2014-09-17 20:16:14.831/2.184 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=n/a): Member 1 joined Service Cluster with senior member 1
+2014-09-17 20:16:14.831/2.184 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=n/a): Member 1 joined Service Management with senior member 1
+2014-09-17 20:16:14.831/2.184 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=n/a): Member 1 joined Service DistributedCache with senior member 1
+2014-09-17 20:16:14.831/2.184 Oracle Coherence GE 3.6.0.0 <Info> (thread=main, member=n/a): Started cluster Name=cluster:0xC4C1
+
+Group{Address=224.3.6.0, Port=36000, TTL=0}
+
+MasterMemberSet
+  (
+  ThisMember=Member(Id=2, Timestamp=2014-09-17 20:16:14.816, Address=10.191.223.200:8090, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:8560, Role=CacheTesterCacheTester)
+  OldestMember=Member(Id=1, Timestamp=2014-09-17 20:16:12.335, Address=10.191.223.200:8088, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:7572, Role=CacheTesterCacheTester)
+  ActualMemberSet=MemberSet(Size=2, BitSetCount=2
+    Member(Id=1, Timestamp=2014-09-17 20:16:12.335, Address=10.191.223.200:8088, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:7572, Role=CacheTesterCacheTester)
+    Member(Id=2, Timestamp=2014-09-17 20:16:14.816, Address=10.191.223.200:8090, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:8560, Role=CacheTesterCacheTester)
+    )
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=0, BitSetCount=0
+    )
+  )
+
+TcpRing{Connections=[1]}
+IpMonitor{AddressListSize=0}
+
+2014-09-17 20:16:14.878/2.231 Oracle Coherence GE 3.6.0.0 <D5> (thread=Invocation:Management, member=2): Service Management joined the cluster with senior service member 1
+2014-09-17 20:16:14.878/3.401 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=1): Member 2 joined Service Management with senior member 1
+2014-09-17 20:16:15.034/2.387 Oracle Coherence GE 3.6.0.0 <D5> (thread=DistributedCache, member=2): Service DistributedCache joined the cluster with senior service member 1
+2014-09-17 20:16:15.065/3.588 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=1): Member 2 joined Service DistributedCache with senior member 1
+2014-09-17 20:16:15.081/2.434 Oracle Coherence GE 3.6.0.0 <D4> (thread=DistributedCache, member=2): Asking member 1 for 128 primary partitions
+2014-09-17 20:16:15.097/3.620 Oracle Coherence GE 3.6.0.0 <D5> (thread=DistributedCache, member=1): 3> Transferring primary PartitionSet{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256} to member 2 requesting 128
+2014-09-17 20:16:15.175/3.698 Oracle Coherence GE 3.6.0.0 <D4> (thread=DistributedCache, member=1): 1> Transferring 129 out of 129 partitions to a node-safe backup 1 at member 2 (under 129)
+2014-09-17 20:16:15.190/3.713 Oracle Coherence GE 3.6.0.0 <D5> (thread=DistributedCache, member=1): Transferring 0KB of backup[1] for PartitionSet{128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256} to member 2
+2014-09-17 20:16:29.152/17.675 Oracle Coherence GE 3.6.0.0 <D5> (thread=Invocation:Management, member=1): Service Management left the cluster
+2014-09-17 20:16:29.152/16.505 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=2): Member 1 left service Management with senior member 2
+2014-09-17 20:16:29.168/16.521 Oracle Coherence GE 3.6.0.0 <D4> (thread=DistributedCache, member=2): Asking member 1 for 129 primary partitions
+2014-09-17 20:16:29.183/17.706 Oracle Coherence GE 3.6.0.0 <D5> (thread=DistributedCache, member=1): 4> Transferring primary PartitionSet{128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256} to member 2 requesting 129
+2014-09-17 20:16:29.246/17.769 Oracle Coherence GE 3.6.0.0 <D5> (thread=DistributedCache, member=1): Service DistributedCache left the cluster
+2014-09-17 20:16:29.246/16.599 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=2): Member 1 left service DistributedCache with senior member 2
+2014-09-17 20:16:29.293/16.646 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=2): MemberLeft announcement from Member(Id=1, Timestamp=2014-09-17 20:16:12.335, Address=10.191.223.200:8088, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:7572, Role=CacheTesterCacheTester)
+2014-09-17 20:16:29.293/16.646 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=2): Member(Id=1, Timestamp=2014-09-17 20:16:29.293, Address=10.191.223.200:8088, MachineId=27336, Location=site:in.oracle.com,machine:SARATHI-IN,process:7572, Role=CacheTesterCacheTester) left Cluster with senior member 2
+2014-09-17 20:16:29.417/17.940 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=1): Service Cluster left the cluster
+2014-09-17 20:16:30.353/17.706 Oracle Coherence GE 3.6.0.0 <D5> (thread=Invocation:Management, member=2): Service Management left the cluster
+2014-09-17 20:16:30.353/17.706 Oracle Coherence GE 3.6.0.0 <D5> (thread=DistributedCache, member=2): Service DistributedCache left the cluster
+2014-09-17 20:16:30.494/17.847 Oracle Coherence GE 3.6.0.0 <D5> (thread=Cluster, member=2): Service Cluster left the cluster
+2017-06-16 11:05:06.427/0.358 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2017-06-16 11:05:06.429/0.360 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override-dev.xml"
+2017-06-16 11:05:06.430/0.361 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override.xml"
+2017-06-16 11:05:06.434/0.365 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
+2017-06-16 11:05:06.435/0.366 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
+2017-06-16 11:05:06.436/0.367 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 12.1.2.0.0 Build 44396
+ Grid Edition: Development mode
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+2017-06-16 11:05:06.601/0.532 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded cache configuration from "file:/C:/Oracle/student/practices/Practice.04.04.solution/config/coherence-cache-config.xml"; this document does not refer to any schema definition and has not been validated.
+2017-06-16 11:05:06.804/0.735 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.ExtensibleConfigurableCacheFactory
+2017-06-16 11:05:07.168/1.099 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=main, member=n/a): TCMP bound to /192.168.5.174:8088 using SystemDatagramSocketProvider
+2017-06-16 11:05:36.337/0.356 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2017-06-16 11:05:36.339/0.358 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override-dev.xml"
+2017-06-16 11:05:36.340/0.359 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override.xml"
+2017-06-16 11:05:36.345/0.364 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
+2017-06-16 11:05:36.346/0.365 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
+2017-06-16 11:05:36.346/0.365 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 12.1.2.0.0 Build 44396
+ Grid Edition: Development mode
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+2017-06-16 11:05:36.495/0.514 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded cache configuration from "file:/C:/Oracle/student/practices/Practice.04.04.solution/config/coherence-cache-config.xml"; this document does not refer to any schema definition and has not been validated.
+2017-06-16 11:05:36.691/0.710 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.ExtensibleConfigurableCacheFactory
+2017-06-16 11:05:37.062/1.081 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=main, member=n/a): TCMP bound to /192.168.5.174:8090 using SystemDatagramSocketProvider
+2017-06-16 11:05:37.631/31.562 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): This Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester) has been attempting to join the cluster at address /224.12.1.0:12100 with TTL 0 for 30 seconds without success; this could indicate a mis-configured TTL value, or it may simply be the result of a busy cluster or active failover.
+2017-06-16 11:05:37.639/31.570 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:05:06 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:05:42.701/36.632 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:05:06 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:05:47.771/41.702 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:05:44 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:05:52.842/46.774 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:05:44 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:05:57.911/51.842 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:05:44 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:02.981/56.912 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:05:44 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:07.298/31.317 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): This Member(Id=0, Timestamp=2017-06-16 11:05:37.11, Address=192.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:988, Role=CacheTesterCacheTester) has been attempting to join the cluster at address /224.12.1.0:12100 with TTL 0 for 30 seconds without success; this could indicate a mis-configured TTL value, or it may simply be the result of a busy cluster or active failover.
+2017-06-16 11:06:07.316/31.335 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=2
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:06:07 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:06:07 IST 2017
+  }
+2017-06-16 11:06:08.052/61.983 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:05:44 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:12.299/36.318 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=1
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:06:12 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:06:12 IST 2017
+  }
+2017-06-16 11:06:13.121/67.052 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:05:44 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:17.499/41.518 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=2
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:06:17 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:06:17 IST 2017
+  }
+2017-06-16 11:06:18.191/72.122 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:05:44 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:22.699/46.719 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=3
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:06:22 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:06:22 IST 2017
+  }
+2017-06-16 11:06:23.261/77.192 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:21 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:27.700/51.719 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=2
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:06:27 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:06:27 IST 2017
+  }
+2017-06-16 11:06:28.331/82.262 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:21 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:32.900/56.919 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=3
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:06:32 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:06:32 IST 2017
+  }
+2017-06-16 11:06:33.401/87.332 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:21 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:38.100/62.119 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=4
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:06:38 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:06:38 IST 2017
+  }
+2017-06-16 11:06:38.472/92.403 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:21 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:43.300/67.319 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=4
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:06:43 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:06:43 IST 2017
+  }
+2017-06-16 11:06:43.542/97.473 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:21 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:48.500/72.519 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=5
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:06:48 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:06:48 IST 2017
+  }
+2017-06-16 11:06:48.598/102.529 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:21 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:53.668/77.687 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:21 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:53.668/107.599 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:21 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:06:58.700/82.719 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=5
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:06:58 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:06:58 IST 2017
+  }
+2017-06-16 11:06:58.738/112.669 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:21 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:03.701/87.720 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=5
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:07:03 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:07:03 IST 2017
+  }
+2017-06-16 11:07:03.808/117.739 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:59 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:08.878/122.809 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:59 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:08.878/92.897 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:59 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:13.902/97.921 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=5
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:07:13 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:07:13 IST 2017
+  }
+2017-06-16 11:07:13.948/127.879 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:59 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:19.018/132.949 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:59 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:19.018/103.037 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:59 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:24.088/138.019 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:59 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:24.088/108.107 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:59 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:29.102/113.121 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=5
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:07:29 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:07:29 IST 2017
+  }
+2017-06-16 11:07:29.158/143.089 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:59 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:34.227/118.246 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:59 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:34.227/148.158 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:06:59 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:39.298/153.229 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:07:36 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:39.298/123.317 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:07:36 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:44.304/128.323 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=5
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:07:44 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:07:44 IST 2017
+  }
+2017-06-16 11:07:44.368/158.299 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:07:36 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:49.305/133.324 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=5
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:07:49 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:07:49 IST 2017
+  }
+2017-06-16 11:07:49.437/163.368 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:07:36 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:54.306/138.325 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=5
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:07:54 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:07:54 IST 2017
+  }
+2017-06-16 11:07:54.508/168.439 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:07:36 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:07:59.506/143.525 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=5
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:07:59 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:07:59 IST 2017
+  }
+2017-06-16 11:07:59.578/173.509 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:07:36 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:08:04.507/148.526 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=5
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:08:04 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:08:04 IST 2017
+  }
+2017-06-16 11:08:04.647/178.578 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:07:36 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:08:09.707/153.726 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates an older member announcing:
+Message "NewMemberAnnounce"
+  {
+  FromMember=Member(Id=0, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=7
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  AttemptCounter=6
+  AttemptLimit=6
+  ThisSentTimestamp=Fri Jun 16 11:08:09 IST 2017
+  ThisRecvTimestamp=Fri Jun 16 11:08:09 IST 2017
+  }
+2017-06-16 11:08:09.717/183.648 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:07:36 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:08:14.788/188.719 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:07:36 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:08:14.788/158.807 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:07:36 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:08:19.858/163.877 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:08:14 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:08:19.858/193.789 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=n/a): Received a discovery message that indicates the presence of an existing cluster that does not respond to join requests; this is usually caused by a network layer failure:
+Message "SeniorMemberHeartbeat"
+  {
+  FromMember=Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+  FromMessageId=0
+  MessagePartCount=0
+  PendingCount=0
+  Delivered
+  MessageType=17
+  ToPollId=0
+  Poll=null
+  Packets
+    {
+    }
+  Service=ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_ANNOUNCE), Id=0, Version=12.1.2}
+  ToMemberSet=null
+  NotifySent=false
+  
+  LastRecvTimestamp=Fri Jun 16 11:08:14 IST 2017
+  MemberSet=MemberSet(Size=2, ids=[20, 32])
+  }
+2017-06-16 11:08:24.112/198.043 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Cluster, member=n/a): Created a new cluster "cluster:0x50C1" with Member(Id=1, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester, Edition=Grid Edition, Mode=Development, CpuCount=4, SocketCount=4)
+2017-06-16 11:08:24.114/198.045 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Started cluster Name=cluster:0x50C1
+
+Group{Address=224.12.1.0, Port=12100, TTL=0}
+
+MasterMemberSet(
+  ThisMember=Member(Id=1, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  OldestMember=Member(Id=1, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  ActualMemberSet=MemberSet(Size=1
+    Member(Id=1, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+    )
+  MemberId|ServiceVersion|ServiceJoined|MemberState
+    1|12.1.2|2017-06-16 11:05:07.252|JOINED
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=0
+    )
+  )
+
+TcpRing{Connections=[]}
+IpMonitor{Addresses=0}
+
+2017-06-16 11:08:24.149/198.080 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=1): Service Management joined the cluster with senior service member 1
+2017-06-16 11:08:24.178/198.109 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=1): Loaded Reporter configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/reports/report-group.xml"
+2017-06-16 11:08:24.352/198.283 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluster, member=1): Member(Id=2, Timestamp=2017-06-16 11:08:24.155, Address=192.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:988, Role=CacheTesterCacheTester) joined Cluster with senior member 1
+2017-06-16 11:08:24.353/168.372 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Cluster, member=n/a): This Member(Id=2, Timestamp=2017-06-16 11:08:24.155, Address=192.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:988, Role=CacheTesterCacheTester, Edition=Grid Edition, Mode=Development, CpuCount=4, SocketCount=4) joined cluster "cluster:0x50C1" with senior Member(Id=1, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester, Edition=Grid Edition, Mode=Development, CpuCount=4, SocketCount=4)
+2017-06-16 11:08:24.388/168.407 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Started cluster Name=cluster:0x50C1
+
+Group{Address=224.12.1.0, Port=12100, TTL=0}
+
+MasterMemberSet(
+  ThisMember=Member(Id=2, Timestamp=2017-06-16 11:08:24.155, Address=192.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:988, Role=CacheTesterCacheTester)
+  OldestMember=Member(Id=1, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+  ActualMemberSet=MemberSet(Size=2
+    Member(Id=1, Timestamp=2017-06-16 11:05:07.252, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+    Member(Id=2, Timestamp=2017-06-16 11:08:24.155, Address=192.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:988, Role=CacheTesterCacheTester)
+    )
+  MemberId|ServiceVersion|ServiceJoined|MemberState
+    1|12.1.2|2017-06-16 11:05:07.252|JOINED,
+    2|12.1.2|2017-06-16 11:08:24.155|JOINED
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=0
+    )
+  )
+
+TcpRing{Connections=[1]}
+IpMonitor{Addresses=0}
+
+2017-06-16 11:08:24.395/198.326 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=1): Service DistributedCache joined the cluster with senior service member 1
+2017-06-16 11:08:24.409/168.428 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=2): Service Management joined the cluster with senior service member 1
+2017-06-16 11:08:24.415/198.346 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=1): Member 2 joined Service Management with senior member 1
+2017-06-16 11:08:24.439/168.458 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=2): Loaded Reporter configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/reports/report-group.xml"
+2017-06-16 11:08:24.644/168.663 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=2): Service DistributedCache joined the cluster with senior service member 1
+2017-06-16 11:08:24.679/168.698 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=DistributedCache, member=2): Asking member 1 for primary ownership of PartitionSet{0..127}
+2017-06-16 11:08:24.707/198.638 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=1): Transferring 0KB of backup[1] for PartitionSet{128..256} to member 2
+2017-06-16 11:08:24.707/198.638 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=1): Member 2 joined Service DistributedCache with senior member 1
+2017-06-16 11:08:24.841/168.860 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=DistributedCache, member=2): Asking member 1 for primary ownership of PartitionSet{0..127}
+2017-06-16 11:08:24.887/198.818 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=1): Transferring primary PartitionSet{0..127} to member 2 requesting 128
+2017-06-16 11:08:39.630/213.561 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=n/a): Service Management left the cluster
+2017-06-16 11:08:39.631/183.650 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=2): Member 1 left service Management with senior member 1
+2017-06-16 11:08:39.633/213.564 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=DistributedCache, member=n/a): Remains to transfer before shutting down: 129 primary partitions, 128 backup partitions
+2017-06-16 11:08:39.647/183.666 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=DistributedCache, member=2): Asking member 1 for primary ownership of PartitionSet{128..256}
+2017-06-16 11:08:39.672/213.603 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=n/a): Transferring primary PartitionSet{128..256} to member 2 requesting 129
+2017-06-16 11:08:39.707/213.638 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=DistributedCache, member=n/a): Remains to transfer before shutting down: 0 primary partitions, 128 backup partitions
+2017-06-16 11:08:39.864/183.883 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=n/a): Service Management left the cluster
+2017-06-16 11:08:39.868/213.799 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=n/a): Service DistributedCache left the cluster
+2017-06-16 11:08:39.869/183.888 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=n/a): Member 1 left service DistributedCache with senior member 1
+2017-06-16 11:08:39.872/183.891 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=n/a): Service DistributedCache left the cluster
+2017-06-16 11:08:39.900/183.919 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluster, member=n/a): Member(Id=1, Timestamp=2017-06-16 11:08:39.9, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester) left Cluster with senior member 2
+2017-06-16 11:08:39.901/183.920 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluster, member=n/a): MemberLeft announcement from Member(Id=1, Timestamp=2017-06-16 11:08:39.9, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2444, Role=CacheTesterCacheTester)
+2017-06-16 11:08:39.915/213.846 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluster, member=n/a): Service Cluster left the cluster
+2017-06-16 11:08:39.920/183.939 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluster, member=n/a): Service Cluster left the cluster
+2017-06-16 11:30:43.202/0.363 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2017-06-16 11:30:43.204/0.365 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override-dev.xml"
+2017-06-16 11:30:43.204/0.365 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override.xml"
+2017-06-16 11:30:43.209/0.370 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
+2017-06-16 11:30:43.210/0.371 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
+2017-06-16 11:30:43.210/0.371 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 12.1.2.0.0 Build 44396
+ Grid Edition: Development mode
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+2017-06-16 11:30:43.380/0.541 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded cache configuration from "file:/C:/Oracle/student/practices/Practice.04.04.solution/config/coherence-cache-config.xml"; this document does not refer to any schema definition and has not been validated.
+2017-06-16 11:30:43.578/0.739 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.ExtensibleConfigurableCacheFactory
+2017-06-16 11:30:43.937/1.098 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=main, member=n/a): TCMP bound to /192.168.5.174:8088 using SystemDatagramSocketProvider
+2017-06-16 11:30:46.088/0.380 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2017-06-16 11:30:46.090/0.383 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override-dev.xml"
+2017-06-16 11:30:46.091/0.383 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/support/coherence-tools-1.0.jar!/tangosol-coherence-override.xml"
+2017-06-16 11:30:46.096/0.388 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
+2017-06-16 11:30:46.097/0.389 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
+2017-06-16 11:30:46.098/0.390 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 12.1.2.0.0 Build 44396
+ Grid Edition: Development mode
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+2017-06-16 11:30:46.258/0.550 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded cache configuration from "file:/C:/Oracle/student/practices/Practice.04.04.solution/config/coherence-cache-config.xml"; this document does not refer to any schema definition and has not been validated.
+2017-06-16 11:30:46.463/0.755 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.ExtensibleConfigurableCacheFactory
+2017-06-16 11:30:46.841/1.133 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=main, member=n/a): TCMP bound to /192.168.5.174:8090 using SystemDatagramSocketProvider
+2017-06-16 11:30:59.862/17.023 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Cluster, member=n/a): Created a new cluster "cluster:0x50C1" with Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=CacheTesterCacheTester, Edition=Grid Edition, Mode=Development, CpuCount=4, SocketCount=4)
+2017-06-16 11:30:59.864/17.025 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Started cluster Name=cluster:0x50C1
+
+Group{Address=224.12.1.0, Port=12100, TTL=0}
+
+MasterMemberSet(
+  ThisMember=Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=CacheTesterCacheTester)
+  OldestMember=Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=CacheTesterCacheTester)
+  ActualMemberSet=MemberSet(Size=1
+    Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=CacheTesterCacheTester)
+    )
+  MemberId|ServiceVersion|ServiceJoined|MemberState
+    1|12.1.2|2017-06-16 11:30:44.021|JOINED
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=0
+    )
+  )
+
+TcpRing{Connections=[]}
+IpMonitor{Addresses=0}
+
+2017-06-16 11:30:59.894/17.055 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=1): Service Management joined the cluster with senior service member 1
+2017-06-16 11:30:59.932/17.093 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=1): Loaded Reporter configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/reports/report-group.xml"
+2017-06-16 11:31:00.125/17.286 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=1): Service DistributedCache joined the cluster with senior service member 1
+2017-06-16 11:31:00.131/17.292 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluster, member=1): Member(Id=2, Timestamp=2017-06-16 11:30:59.933, Address=192.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:1816, Role=CacheTesterCacheTester) joined Cluster with senior member 1
+2017-06-16 11:31:00.133/14.425 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Cluster, member=n/a): This Member(Id=2, Timestamp=2017-06-16 11:30:59.933, Address=192.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:1816, Role=CacheTesterCacheTester, Edition=Grid Edition, Mode=Development, CpuCount=4, SocketCount=4) joined cluster "cluster:0x50C1" with senior Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=CacheTesterCacheTester, Edition=Grid Edition, Mode=Development, CpuCount=4, SocketCount=4)
+2017-06-16 11:31:00.157/14.449 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Started cluster Name=cluster:0x50C1
+
+Group{Address=224.12.1.0, Port=12100, TTL=0}
+
+MasterMemberSet(
+  ThisMember=Member(Id=2, Timestamp=2017-06-16 11:30:59.933, Address=192.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:1816, Role=CacheTesterCacheTester)
+  OldestMember=Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=CacheTesterCacheTester)
+  ActualMemberSet=MemberSet(Size=2
+    Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=CacheTesterCacheTester)
+    Member(Id=2, Timestamp=2017-06-16 11:30:59.933, Address=192.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:1816, Role=CacheTesterCacheTester)
+    )
+  MemberId|ServiceVersion|ServiceJoined|MemberState
+    1|12.1.2|2017-06-16 11:30:44.021|JOINED,
+    2|12.1.2|2017-06-16 11:30:59.933|JOINED
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=0
+    )
+  )
+
+TcpRing{Connections=[1]}
+IpMonitor{Addresses=0}
+
+2017-06-16 11:31:00.194/14.486 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=2): Service Management joined the cluster with senior service member 1
+2017-06-16 11:31:00.201/17.362 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=1): Member 2 joined Service Management with senior member 1
+2017-06-16 11:31:00.226/14.518 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=2): Loaded Reporter configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/reports/report-group.xml"
+2017-06-16 11:31:00.423/14.715 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=2): Service DistributedCache joined the cluster with senior service member 1
+2017-06-16 11:31:00.461/14.753 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=DistributedCache, member=2): Asking member 1 for primary ownership of PartitionSet{0..127}
+2017-06-16 11:31:00.496/17.657 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=1): Transferring 0KB of backup[1] for PartitionSet{128..256} to member 2
+2017-06-16 11:31:00.496/17.657 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=1): Member 2 joined Service DistributedCache with senior member 1
+2017-06-16 11:31:00.611/17.772 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=1): Received panic from junior member Member(Id=2, Timestamp=2017-06-16 11:30:59.933, Address=192.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:1816, Role=CacheTesterCacheTester) caused by Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+2017-06-16 11:31:00.610/14.902 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=Cluster, member=2): Notifying the senior Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=CacheTesterCacheTester) of an unexpected cluster heartbeat from Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+2017-06-16 11:31:00.624/14.916 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=DistributedCache, member=2): Asking member 1 for primary ownership of PartitionSet{0..127}
+2017-06-16 11:31:00.660/17.821 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=1): Transferring primary PartitionSet{0..127} to member 2 requesting 128
+2017-06-16 11:31:15.374/32.535 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=n/a): Service Management left the cluster
+2017-06-16 11:31:15.376/29.668 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=2): Member 1 left service Management with senior member 1
+2017-06-16 11:31:15.378/32.539 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=DistributedCache, member=n/a): Remains to transfer before shutting down: 129 primary partitions, 128 backup partitions
+2017-06-16 11:31:15.393/29.685 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=DistributedCache, member=2): Asking member 1 for primary ownership of PartitionSet{128..256}
+2017-06-16 11:31:15.421/32.582 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=n/a): Transferring primary PartitionSet{128..256} to member 2 requesting 129
+2017-06-16 11:31:15.463/32.624 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=DistributedCache, member=n/a): Remains to transfer before shutting down: 0 primary partitions, 128 backup partitions
+2017-06-16 11:31:15.692/29.984 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=n/a): Service Management left the cluster
+2017-06-16 11:31:15.696/32.858 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=n/a): Service DistributedCache left the cluster
+2017-06-16 11:31:15.697/29.989 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=n/a): Member 1 left service DistributedCache with senior member 1
+2017-06-16 11:31:15.701/29.993 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=n/a): Service DistributedCache left the cluster
+2017-06-16 11:31:15.766/32.927 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluster, member=n/a): Service Cluster left the cluster
+2017-06-16 11:31:15.772/30.064 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluster, member=n/a): Service Cluster left the cluster

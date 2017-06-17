@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE cache-config SYSTEM "cache-config.dtd">
+
+<cache-config>
+
+  <caching-scheme-mapping>
+    TODO: Place near cache-mapping here
+    
+    TODO: Place direct TCP cache-mapping here 
+  </caching-scheme-mapping>
+
+  <caching-schemes>
+    TODO: Place near cache scheme here
+    
+    TODO: Place remote cache scheme here
+  </caching-schemes>
+
+</cache-config>
