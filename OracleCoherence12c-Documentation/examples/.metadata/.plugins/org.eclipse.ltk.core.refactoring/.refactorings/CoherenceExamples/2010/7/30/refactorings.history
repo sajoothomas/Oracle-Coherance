@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 1 elements(s) to &apos;com.oracle.education.coherence.examples.SimpleMapListener.java&apos;&#x0D;&#x0A;- Original project: &apos;CoherenceExamples&apos;&#x0D;&#x0A;- Destination element: &apos;com.oracle.education.coherence.examples.SimpleMapListener.java&apos;&#x0D;&#x0A;- Original element: &apos;com.oracle.education.coherence.examples.SimpleMapListener.java&apos;" description="Copy compilation unit" destination="/src&lt;com.oracle.education.coherence.examples{SimpleMapListener.java" element1="/src&lt;com.oracle.education.coherence.examples{SimpleMapListener.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1279551194576" units="1" version="1.0"/>
+</session>

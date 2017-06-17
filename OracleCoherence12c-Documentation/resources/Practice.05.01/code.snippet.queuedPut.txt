@@ -1,0 +1,8 @@
+    StateWorker worker = null;
+    private void queuedPut (State state) {
+        if ( worker == null) {
+            worker = new StateWorker();
+            new Thread(worker).start();
+        }
+        worker.storeState(state);
+    }

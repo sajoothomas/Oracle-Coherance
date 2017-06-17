@@ -1,0 +1,5 @@
+package com.oracle.education.coherence.examples;
+
+public class TestAirCraftSerialize {
+
+}

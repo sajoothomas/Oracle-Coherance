@@ -1,0 +1,35 @@
+
+    <cache-mapping>
+      <cache-name>tx-*</cache-name>
+      <scheme-name>transactional</scheme-name>
+    </cache-mapping>
+
+    <transactional-scheme>
+      <scheme-name>transactional</scheme-name>
+      <service-name>TestTxnService</service-name>      
+      <autostart>true</autostart>
+    </transactional-scheme>
+	
+	
+		Connection conn = new DefaultConnectionFactory().createConnection("TestTxnService");
+		conn.setAutoCommit(false);
+		conn.setEager(true);
+
+		OptimisticNamedCache cache = conn.getNamedCache("tx-cache");
+		
+		cache.insert("key", "value");
+		cache.insert("key2", "value2");
+		
+		cache.update("key", "value2", null);
+		
+		conn.commit();
+		
+		Connection conn2 = new DefaultConnectionFactory().createConnection("TestTxnService");
+		conn2.setAutoCommit(false);
+		
+		OptimisticNamedCache cache2 = conn2.getNamedCache("tx-cache");
+		
+		conn.rollback();
+		
+		conn.close();
+		conn2.close();

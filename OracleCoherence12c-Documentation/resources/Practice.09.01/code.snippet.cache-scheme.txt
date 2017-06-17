@@ -1,0 +1,39 @@
+    <distributed-scheme>
+      <scheme-name>CustomCacheStoreScheme</scheme-name>
+      <service-name>CustomCacheStoreSchemeCache</service-name>
+      <backing-map-scheme>
+        <read-write-backing-map-scheme>
+          <internal-cache-scheme>
+            <local-scheme/>
+          </internal-cache-scheme>
+          <!-- Define the cache store scheme -->
+          <cachestore-scheme>
+            <class-scheme>
+              <class-name>
+                retail.cachestore.CustomerCachestore
+              </class-name>
+              <init-params>
+
+                <!-- This param is the configuration info -->
+                <init-param>
+                  <param-type>java.lang.String</param-type>
+                  <param-value>jdbc:oracle:thin:@localhost:1521:XE</param-value>
+                </init-param>
+
+                <!-- This param is the oracle xe username -->
+                <init-param>
+                  <param-type>java.lang.String</param-type>
+                  <param-value>COHERENCE</param-value>
+                </init-param>
+
+                <!-- This param is the oracle xe usernames password -->
+                <init-param>
+                  <param-type>java.lang.String</param-type>
+                  <param-value>COHERENCE</param-value>
+                </init-param>
+              </init-params>
+            </class-scheme>
+          </cachestore-scheme>
+        </read-write-backing-map-scheme>
+      </backing-map-scheme>
+    </distributed-scheme>

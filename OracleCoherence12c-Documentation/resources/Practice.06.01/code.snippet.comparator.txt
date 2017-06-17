@@ -1,0 +1,10 @@
+public int compare(Object first, Object second) {
+    if (!( first instanceof Customer) ||
+	!( second instanceof Customer)){
+	throw new IllegalArgumentException("object != Customer");
+	}
+	Customer customerOne = (Customer) first;
+	Customer customerTwo = (Customer) second;
+	
+     return customerOne.getName().compareTo(customerTwo.getName());
+}

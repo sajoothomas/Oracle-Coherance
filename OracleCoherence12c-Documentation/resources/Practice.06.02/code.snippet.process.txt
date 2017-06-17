@@ -1,0 +1,18 @@
+protected void process(Object object, boolean isFinal) {
+    if (object == null ) return; 
+    if (!isFinal) {
+        if (results.length() == 0) {
+           results.append((String)object);
+        } else {
+            results.append(",");
+            results.append((String)object);		
+       }
+     } else { // isFinal
+       // basically the same thing
+       // but with an entire set of values
+       if (results.length()>0) {
+          results.append(",");
+        }
+        results.append((String)object);		
+     }
+}

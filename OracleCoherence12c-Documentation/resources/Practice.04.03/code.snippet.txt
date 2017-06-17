@@ -1,0 +1,18 @@
+
+    <cache-mapping>
+      <cache-name>*</cache-name>
+      <scheme-name>MyPartitionedScheme</scheme-name>
+    </cache-mapping>
+
+    <distributed-scheme>
+      <scheme-name>MyPartitionedScheme</scheme-name>
+      <service-name>DistributedCache</service-name>
+
+      <backing-map-scheme>
+        <local-scheme>
+          <scheme-ref>MyLocalCachingScheme</scheme-ref>
+        </local-scheme>
+      </backing-map-scheme>
+
+      <autostart>true</autostart>
+    </distributed-scheme>

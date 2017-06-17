@@ -1,0 +1,12 @@
+    if (debug) {
+        System.out.println("getConvertedValue called with '" + internal + "'");
+    }
+    Object original = null;
+    if ( internal != null)
+        original = context.getValueFromInternalConverter().convert(internal);
+
+    if (debug) {
+	System.out.println("getConvertedValue returning with '" + 
+	  		    original + "'");
+    }
+    return original;

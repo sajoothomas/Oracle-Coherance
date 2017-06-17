@@ -1,0 +1,49 @@
+package com.oracle.education.coherence.examples;
+
+import java.net.URISyntaxException;
+
+import com.tangosol.util.Base;
+import com.tangosol.util.Binary;
+import com.tangosol.util.ExternalizableHelper;
+
+public class TestAirCraftSerialize extends Base {
+
+	public static void main(String[] args) {
+
+		AirCraft craft = new AirCraft(1l, 200l, "Airbus", "A 300");
+		int count = 10000;
+		show("ExternalizableLite Serialization -> ", testSerTime(craft, count));
+		start("Serialized an AirCraft " + count + " times  ");
+        testSerTime(craft, count);
+        stop();
+        out();
+	}
+
+	public static Binary testSerTime(Object value, int c) {
+		Binary binValue = null;
+		for (int i = 0; i < c; ++i) {
+			binValue = ExternalizableHelper.toBinary(value);
+		}
+		return binValue;
+	}
+
+	static void show(String sDesc, Binary binValue) {
+		out(sDesc + binValue.length() + " bytes");
+		out(toHexDump(binValue.toByteArray(), 16));
+		out();
+	}
+
+	static void start(String sTest) {
+		test = sTest;
+		startTime = System.currentTimeMillis();
+	}
+
+	static void stop() {
+		long cMillis = System.currentTimeMillis() - startTime;
+		out(test + cMillis + "ms");
+	}
+
+	static long startTime;
+	static String test;
+
+}

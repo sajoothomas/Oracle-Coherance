@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/CoherenceExamples/src/com/oracle/education/coherence/examples/test/TestMakeObservable.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.oracle.education.coherence.examples.test.TestMakeObservable"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="CoherenceExamples"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dtangosol.coherence.ttl=0"/>
+</launchConfiguration>

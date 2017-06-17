@@ -1,0 +1,14 @@
+package com.oracle.education.coherence.examples;
+
+import java.net.URISyntaxException;
+
+public class TestAirCraftSerialize {
+
+	public static void main(String[] args)  {
+		
+		//AirCraft craft = new AirCraft(1l, 200l,"Airbus", "A 300"};
+
+		
+	}
+
+}

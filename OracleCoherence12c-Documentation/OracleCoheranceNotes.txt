@@ -1,0 +1,2950 @@
+Oracle Coherance:
+-----------------
+ 
+Day 1
+====================================
+
+Intro:
+
+
+Size (Cache is in GB's, DB is in TB's).
+
+Persistance
+
+
+OC 3.4 (Tangersol product which was asquired by Oracle) -> OC 3.6 (most popular) -> OC 3.7 (elastic feature) -> OC 12.
+
+elastic data -> 
+
+Data is in the JVM Heap.
+
+
+Coherance
+- standalone - jar which runs in the local system JRE. It will have a bin directory, and we have to run cmd lines to start/stop and manager.
+- integrated with Weblogic app server (on premesise setup). During installation of Weblogic it will ask if you want to also install Coherance. Here the weblogic server is a Coherance server, and we use the weblogic admin console to mangaer the cache.
+- Cloud - has cloud features, Multi tenancy features where one infrastructure can be used to service multple customer.
+
+The term "software multitenancy" refers to a software architecture in which a single instance of software runs on a server and serves multiple tenants. A tenant is a group of users who share a common access with specific privileges to the software instance
+
+
+
+for writes, locking mechanise is done by DB. FOr Cohernacen we have to handle it.
+
+CQL -> similear to SQL.
+
+---
+
+
+OC Overview:
+--------------
+
+OC Standalone setup.
+1. Quick install - 10MB file which will be only OC bin
+2. Complete isntall - libraries, bin, samples.
+
+
+
+
+TCMP (Tangersol Cluster Management Protocol) is the protocol to intercommuncation between the OC clusters. Built over TCP.
+
+TCMP used as Multicast (Broadcast and discover) and UniCast.
+
+Multicast setup:
+Conf key common parameters across nodes:
+Cluster Name
+multicast IP   (we can also use a WKA well known address here)
+mlticast port
+TTL value.  (TTL value 0 is for local setup, no cluster over network). IT is no the time in msecs, but the number of network hops. value 1 to 16, same network, 17 to 32 bigger network... etc.
+
+In OC, there is no master node. The 1st Node which start the cluster is the multicast IP. It is not a master, and all nodes in the cluster is a peer.
+
+
+--
+multicast:
+
+In computer networking, multicast (one-to-many or many-to-many distribution[1]) is group communication[2] where information is addressed to a group of destination computers simultaneously. (not boadcast to everyone, but only groups interested).
+
+ The group includes the addresses from 224.0.0.0 to 239.255.255.255. 
+ 
+ 
+ 
+ IP multi-casting is a communication mechanism in which data is communicated from server to a set of clients who are interested in receiving that data. Any client can dynamically enter or leave the communication.
+
+Multicast IP address
+
+To understand how multi-casting works, one needs to understand the structure of multicast IP address. Multicast IP address form the basis of multicast communication. In terms of classes, it’s the Class D IP addresses that are used as multicast IP addresses.
+
+Here is the structure of Class D IP addresses :
+
+
+
+So, it can be easily said that multicast IPs range from 224.0.0.0 to 239.255.255.255. As with the case of ports (where we have well known ports ie 0-1024), there are some reserved multicast IP addresses or well known IP addresses.
+
+
+In case of multicast communication, the server sends data on a particular multicast IP address and clients who intend to receive that data need to listen on the same multicast address. These clients can be various different networks. A group of clients listening to same multicast address is known as host group.
+
+
+On one hand, clients can leave and join a multicast group dynamically while on the other side the server does not need to know that identity of clients (joining or leaving). The clients use IGMP protocol for joining a multicast group.
+
+
+
+Multicasting on single network
+
+On a single network, the concept of multitasking works as follows :
+
+The server sends data packet to specific destination IP address or a multicast IP address.
+Through the mapping described above, the multicast IP address is converted into ethernet address and sent on the network.
+A process on a client that is willing to receive multicast traffic need to specify the same multicast IP address while communicating with the systems IP layer which further configures lower layers to look out for such multicast packets.
+When a multicast packet is received on the system, it is filtered in order to discard unwanted packets as 32 multicast group IDs can correspond to one ethernet address (explained above)
+
+
+Multicasting Vs Broadcasting
+
+Multicasting can be a good alternative to broadcasting in some scenarios like when a client needs a bootstrap server to boot-up. Generally it is done by sending broadcast packets but this results in packet processing by those hosts also that do not provide this service. While if the same is done through multicast messages then the requests would get received by only those hosts that provide this service.
+
+--
+
+
+
+
+Unicast setup:
+used when the cluster size is small and for POC's.
+A node will speak to another node in sequence node1 -> node2 -> node3.
+
+
+
+The node which starts the cluster will be called a senior memeber and responsible for settng up the metadat in the cluster.
+
+Metadata here is info on the other nodes, and where the data resides. (ex. data partioned information). In Hadoop, this meta data is stored in the one master node. In OC, every node has the Metadata info.
+
+If the senior member goes down, the 2nd node which joined will get promoted as the senior member.
+
+
+
+
+---
+
+
+Conherence Configurations.
+
+
+OC will have many services running(OC server servicer, Partition replication cache service, Invocation service....). Services are not caches, but provide sercies for caches. Services are thread which runs inside the OC JVM.
+
+1. Operational Configurations (cannot change the names. We provide the override file, which will be used instead of the config present in the coherance.jar).
+
+After all operational configuration is loaded, the coherence-cache-config.xml is loaded, defining the caches themselves.
+
+
+2. Cache configuration (custom names)
+
+After all operational configuration is loaded, the coherence-cache-config.xml is loaded, defining the caches themselves.
+
+
+
+Oracle has Enterprise Manager (EM) pack to monitor the server and cluster. 
+
+jconsole .. for local can be used to monior the JVM for hot spots.
+
+
+
+
+Exact the JAR, and if we modify the config files... place the updated files in the class path.
+
+
+
+
+logging can also be controlled.... -1 no logging, 5 is max logging.
+
+
+
+If the Cluster name is diff, it will form a separate cluster.
+
+For 2 Clusters to speak to each other, .... we use *Extends and proxy.
+
+
+OC12c Installation:
+-------------------
+
+
+
+OFM -> Oracle Fusion Middleware.
+
+
+1. download and install ofm_coherence_generic_12.1.2.0.0_disk1_1of1.
+
+
+2. Install to the default location.
+
+C:\Oracle\Middleware\Oracle_Home
+
+the main OC jars are in ...
+
+C:\Oracle\Middleware\Oracle_Home\coherence\lib
+
+
+conherence.jar
+
+coherence-web.jar (helps manager user sessions).
+
+coherence-rest (provides rest services to directly access Cache Objects).
+
+coherence-jpa and coherence-hibernate (to connect with datasources)
+
+
+
+OC Storage enable node  (Stores the business data) - this is the default type of node.
+
+OC Storage disabled node (they are member of cluster, but no participating in data operations). There are 3 types -
+	1. Process Node (where the custom application (EAR/WAR) process runs. Ultra low latency. Here the Appliation can access the OC Data using the OC Java lib and methods.
+	2. Proxy Node (Acts as a middlweare inbetwwen the client and OC server). Any external client to access OC will have to cover via Proxy node for both REST and *Extends.
+	   A load balance is added to the Proxy nodes to blance the requets.
+	3. Management node. (rest of nodes are managed nodes) Purpose is to capture stats from the entire cluster which can be used by Monitoring applications (Jconsole and apps using the libs).
+	
+	
+	
+REcommendation is for 2 Clusters.
+1. Data Tier cluster
+2. Web Tier cluster (custom application).
+3. Weblogic has the provision add both clusters to one OC External Common Cluster.
+
+
+
+
+In GWIM, Application is running separately and connects to the OC Cluster via the Proxy node (*Extends)
+
+It is also possible to IBM WAS to deploy the Applicatoin with conherance.jar (with storage disabled). This will start an OC node which will connect to the cluster, and enable your applications to call the cache data.
+
+
+
+
+
+
+
+3. To start the OC server.
+
+C:\Oracle\Middleware\Oracle_Home\coherence\bin
+
+
+for standalone...
+
+cache-server.cmd -> This is responsible 
+
+
+
+coherence.cmd   -> This is a simple setup process node (no storage) to test and verify the cache setup.
+
+Map (?):
+2017-06-14 16:00:35.679/56.534 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clust
+er, member=8): Member(Id=13, Timestamp=2017-06-14 16:00:37.188, Address=192.168.
+5.219:8090, MachineId=11556, Location=site:,machine:CSS-PC,process:3392, Role=Co
+herenceConsole) joined Cluster with senior member 4
+
+Map (?):
+2017-06-14 16:00:35.960/56.815 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invoc
+ation:Management, member=8): Member 13 joined Service Management with senior mem
+ber 4
+
+Map (?): cache mycache
+
+put name sajoo
+
+put city chennai
+
+
+this will put vales to the map.
+
+
+list... will  display all he values in the cache.
+
+
+--
+
+To create our own cluster (ex nodes)
+
+extract the coherence.jar
+
+
+jar -xvf coherence.jar to uncompress.
+
+
+tangosol-coherence.xml -> make sure the mode is dev. As we should not edit this file.
+
+tangosol-coherence-override-dev.xml -> this is the file we edit and customize.
+
+
+
+
+tangosol-coherence-override-dev.xml
+
+<?xml version='1.0'?>
+
+<!--
+This operational configuration override file is set up for use with Coherence in
+a development mode.
+-->
+
+<coherence  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xmlns="http://xmlns.oracle.com/coherence/coherence-operational-config"
+            xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-operational-config coherence-operational-config.xsd"
+            xml-override="/tangosol-coherence-override.xml">    
+
+  <cluster-config>
+	  <member-identity>
+		<cluster-name system-property="tangosol.coherence.cluster">cluster1</cluster-name>
+	  </member-identity>
+	  
+    <multicast-listener>
+	  <address system-property="tangosol.coherence.clusteraddress">224.12.1.1</address>
+      <port system-property="tangosol.coherence.clusterport">12100</port>
+	  
+	  
+      <time-to-live system-property="tangosol.coherence.ttl">4</time-to-live>
+      <join-timeout-milliseconds>3000</join-timeout-milliseconds>
+    </multicast-listener>
+  </cluster-config>
+
+  <logging-config>
+    <severity-level system-property="tangosol.coherence.log.level">5</severity-level>
+    <character-limit system-property="tangosol.coherence.log.limit">0</character-limit>
+  </logging-config>
+</coherence>
+
+
+
+
+
+ensure this override file is in the classpath. since the file is present in jar as well, ensure that the cp entry the override is first.
+%java_exec% -server -showversion %java_opts% -cp "C:\Oracle\classpath;%coherence_home%\lib\coherence.jar"
+
+for unit testing... good to set the TTL to Zero to prevent conflicts.
+
+
+
+
+*** This is the data node...set storage_enabled will be enabled by default.
+
+
+
+
+C:\Oracle\Middleware\Oracle_Home\coherence\bin>cache-server.cmd
+java version "1.7.0_51"
+Java(TM) SE Runtime Environment (build 1.7.0_51-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 24.51-b03, mixed mode)
+
+2017-06-14 16:43:19.407/0.343 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, m
+ember=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middlewar
+e/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2017-06-14 16:43:19.469/0.405 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, m
+ember=n/a): Loaded operational overrides from "file:/C:/Oracle/classpath/tangoso
+l-coherence-override-dev.xml"
+2017-06-14 16:43:19.469/0.405 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "/tangosol-coherence-override.xml" is
+not specified
+2017-06-14 16:43:19.485/0.421 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "cache-factory-config.xml" is not spec
+ified
+2017-06-14 16:43:19.485/0.421 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "cache-factory-builder-config.xml" is
+not specified
+2017-06-14 16:43:19.485/0.421 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 12.1.2.0.0 Build 44396
+ Grid Edition: Development mode
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+2017-06-14 16:43:19.703/0.639 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=n/a): Loaded cache configuration from "jar:file:/C:/Oracle/Middleware/O
+racle_Home/coherence/lib/coherence.jar!/coherence-cache-config.xml"
+2017-06-14 16:43:19.828/0.764 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=n/a): Loaded cache configuration from "jar:file:/C:/Oracle/Middleware/O
+racle_Home/coherence/lib/coherence.jar!/internal-txn-cache-config.xml"
+2017-06-14 16:43:20.187/1.123 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=n/a): Created cache factory com.tangosol.net.ExtensibleConfigurableCach
+eFactory
+2017-06-14 16:43:20.468/1.404 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=main,
+member=n/a): TCMP bound to /192.168.5.174:8088 using SystemDatagramSocketProvide
+r
+2017-06-14 16:43:23.073/4.009 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Clus
+ter, member=n/a): This Member(Id=6, Timestamp=2017-06-14 04:13:22.422, Address=1
+92.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2472,
+Role=CoherenceServer, Edition=Grid Edition, Mode=Development, CpuCount=4, Socket
+Count=4) joined cluster "cluster1" with senior Member(Id=1, Timestamp=2017-06-14
+ 04:09:47.688, Address=192.168.5.225:8088, MachineId=33010, Location=site:,machi
+ne:RPS-PC,process:1884, Role=CoherenceServer, Edition=Grid Edition, Mode=Develop
+ment, CpuCount=4, SocketCount=4)
+2017-06-14 16:43:23.073/4.009 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluste
+r, member=n/a): Member(Id=2, Timestamp=2017-06-14 04:09:53.21, Address=192.168.5
+.222:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3076, Role=Coh
+erenceServer) joined Cluster with senior member 1
+2017-06-14 16:43:23.089/4.025 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluste
+r, member=n/a): Member(Id=4, Timestamp=2017-06-14 04:11:43.23, Address=192.168.5
+.222:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:3916, Role=Coh
+erenceConsole) joined Cluster with senior member 1
+2017-06-14 16:43:23.089/4.025 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluste
+r, member=n/a): Member(Id=5, Timestamp=2017-06-14 04:12:10.085, Address=192.168.
+5.225:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:1744, Role=Co
+herenceConsole) joined Cluster with senior member 1
+2017-06-14 16:43:23.104/4.040 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=n/a): Started cluster Name=cluster1
+
+Group{Address=224.12.1.1, Port=12100, TTL=4}
+
+MasterMemberSet(
+  ThisMember=Member(Id=6, Timestamp=2017-06-14 04:13:22.422, Address=192.168.5.1
+74:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2472, Role=Coher
+enceServer)
+  OldestMember=Member(Id=1, Timestamp=2017-06-14 04:09:47.688, Address=192.168.5
+.225:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:1884, Role=Coh
+erenceServer)
+  ActualMemberSet=MemberSet(Size=5
+    Member(Id=1, Timestamp=2017-06-14 04:09:47.688, Address=192.168.5.225:8088,
+MachineId=33010, Location=site:,machine:RPS-PC,process:1884, Role=CoherenceServe
+r)
+    Member(Id=2, Timestamp=2017-06-14 04:09:53.21, Address=192.168.5.222:8088, M
+achineId=33010, Location=site:,machine:RPS-PC,process:3076, Role=CoherenceServer
+)
+    Member(Id=4, Timestamp=2017-06-14 04:11:43.23, Address=192.168.5.222:8090, M
+achineId=33010, Location=site:,machine:RPS-PC,process:3916, Role=CoherenceConsol
+e)
+    Member(Id=5, Timestamp=2017-06-14 04:12:10.085, Address=192.168.5.225:8090,
+MachineId=33010, Location=site:,machine:RPS-PC,process:1744, Role=CoherenceConso
+le)
+    Member(Id=6, Timestamp=2017-06-14 04:13:22.422, Address=192.168.5.174:8088,
+MachineId=33010, Location=site:,machine:RPS-PC,process:2472, Role=CoherenceServe
+r)
+    )
+  MemberId|ServiceVersion|ServiceJoined|MemberState
+    1|12.1.2|2017-06-14 04:09:47.688|JOINED,
+    2|12.1.2|2017-06-14 04:09:53.21|JOINED,
+    4|12.1.2|2017-06-14 04:11:43.23|JOINED,
+    5|12.1.2|2017-06-14 04:12:10.085|JOINED,
+    6|12.1.2|2017-06-14 04:13:22.422|JOINED
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=1
+    Member(Id=3, Timestamp=2017-06-14 16:40:52.002, Address=192.168.5.222:8090,
+MachineId=33010)
+    )
+  )
+
+TcpRing{Connections=[5, 2]}
+IpMonitor{Addresses=2}
+
+2017-06-14 16:43:23.151/4.087 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invoca
+tion:Management, member=6): Service Management joined the cluster with senior se
+rvice member 1
+2017-06-14 16:43:23.229/4.165 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=6): Loaded Reporter configuration from "jar:file:/C:/Oracle/Middleware/
+Oracle_Home/coherence/lib/coherence.jar!/reports/report-group.xml"
+2017-06-14 16:43:23.432/4.368 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Distri
+butedCache, member=6): Service DistributedCache joined the cluster with senior s
+ervice member 1
+2017-06-14 16:43:23.494/4.430 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Replic
+atedCache, member=6): Service ReplicatedCache joined the cluster with senior ser
+vice member 1
+2017-06-14 16:43:23.541/4.477 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Optimi
+sticCache, member=6): Service OptimisticCache joined the cluster with senior ser
+vice member 1
+2017-06-14 16:43:23.572/4.508 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invoca
+tion:InvocationService, member=6): Service InvocationService joined the cluster
+with senior service member 1
+2017-06-14 16:43:23.572/4.508 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=6):
+Services
+  (
+  ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_JOINED), Id=0, Vers
+ion=12.1.2, OldestMemberId=1}
+  InvocationService{Name=Management, State=(SERVICE_STARTED), Id=1, Version=12.1
+.2, OldestMemberId=1}
+  PartitionedCache{Name=DistributedCache, State=(SERVICE_STARTED), LocalStorage=
+enabled, PartitionCount=257, BackupCount=1, AssignedPartitions=0, BackupPartitio
+ns=0}
+  ReplicatedCache{Name=ReplicatedCache, State=(SERVICE_STARTED), Id=3, Version=1
+2.1.2, OldestMemberId=1}
+  Optimistic{Name=OptimisticCache, State=(SERVICE_STARTED), Id=4, Version=12.1.2
+, OldestMemberId=1}
+  InvocationService{Name=InvocationService, State=(SERVICE_STARTED), Id=5, Versi
+on=12.1.2, OldestMemberId=1}
+  )
+
+Started DefaultCacheServer...
+
+2017-06-14 16:43:24.539/5.475 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=Distri
+butedCache, member=6): Asking member 2 for primary ownership of PartitionSet{43.
+.86}
+2017-06-14 16:43:24.649/5.585 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=Distri
+butedCache, member=6): Asking member 2 for primary ownership of PartitionSet{43.
+.86}
+2017-06-14 16:43:24.820/5.756 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=Distri
+butedCache, member=6): Asking member 1 for primary ownership of PartitionSet{0..
+41}
+2017-06-14 16:43:24.992/5.928 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Distri
+butedCache, member=6): Transferring 0KB of backup[1] for PartitionSet{0} to memb
+
+
+
+
+To test the cache... we can start a process node. conherance.cmd.
+
+
+here....@rem specify if the console will also act as a server
+set storage_enabled=false
+
+
+
+** Starting storage disabled console **
+java version "1.7.0_51"
+Java(TM) SE Runtime Environment (build 1.7.0_51-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 24.51-b03, mixed mode)
+
+2017-06-14 16:49:31.155/0.343 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, m
+ember=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middlewar
+e/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2017-06-14 16:49:31.233/0.421 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, m
+ember=n/a): Loaded operational overrides from "file:/C:/Oracle/classpath/tangoso
+l-coherence-override-dev.xml"
+2017-06-14 16:49:31.233/0.421 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "/tangosol-coherence-override.xml" is
+not specified
+2017-06-14 16:49:31.233/0.421 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "cache-factory-config.xml" is not spec
+ified
+2017-06-14 16:49:31.233/0.421 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "cache-factory-builder-config.xml" is
+not specified
+2017-06-14 16:49:31.233/0.421 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 12.1.2.0.0 Build 44396
+ Grid Edition: Development mode
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+2017-06-14 16:49:31.795/0.983 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=main,
+member=n/a): TCMP bound to /192.168.5.174:8090 using SystemDatagramSocketProvide
+r
+2017-06-14 16:49:35.648/4.836 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Clus
+ter, member=n/a): This Member(Id=7, Timestamp=2017-06-14 04:19:35.208, Address=1
+92.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2736,
+Role=CoherenceConsole, Edition=Grid Edition, Mode=Development, CpuCount=4, Socke
+tCount=4) joined cluster "cluster1" with senior Member(Id=1, Timestamp=2017-06-1
+4 04:09:47.688, Address=192.168.5.225:8088, MachineId=33010, Location=site:,mach
+ine:RPS-PC,process:1884, Role=CoherenceServer, Edition=Grid Edition, Mode=Develo
+pment, CpuCount=4, SocketCount=4)
+2017-06-14 16:49:35.835/5.023 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluste
+r, member=n/a): Member(Id=2, Timestamp=2017-06-14 04:09:53.21, Address=192.168.5
+.222:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3076, Role=Coh
+erenceServer) joined Cluster with senior member 1
+2017-06-14 16:49:35.851/5.039 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluste
+r, member=n/a): Member(Id=4, Timestamp=2017-06-14 04:11:43.23, Address=192.168.5
+.222:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:3916, Role=Coh
+erenceConsole) joined Cluster with senior member 1
+2017-06-14 16:49:35.851/5.039 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluste
+r, member=n/a): Member(Id=5, Timestamp=2017-06-14 04:12:10.085, Address=192.168.
+5.225:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:1744, Role=Co
+herenceConsole) joined Cluster with senior member 1
+2017-06-14 16:49:35.851/5.039 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Cluste
+r, member=n/a): Member(Id=6, Timestamp=2017-06-14 04:13:22.422, Address=192.168.
+5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2472, Role=Co
+herenceServer) joined Cluster with senior member 1
+2017-06-14 16:49:35.898/5.086 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=n/a): Started cluster Name=cluster1
+
+Group{Address=224.12.1.1, Port=12100, TTL=4}
+
+MasterMemberSet(
+  ThisMember=Member(Id=7, Timestamp=2017-06-14 04:19:35.208, Address=192.168.5.1
+74:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:2736, Role=Coher
+enceConsole)
+  OldestMember=Member(Id=1, Timestamp=2017-06-14 04:09:47.688, Address=192.168.5
+.225:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:1884, Role=Coh
+erenceServer)
+  ActualMemberSet=MemberSet(Size=6
+    Member(Id=1, Timestamp=2017-06-14 04:09:47.688, Address=192.168.5.225:8088,
+MachineId=33010, Location=site:,machine:RPS-PC,process:1884, Role=CoherenceServe
+r)
+    Member(Id=2, Timestamp=2017-06-14 04:09:53.21, Address=192.168.5.222:8088, M
+achineId=33010, Location=site:,machine:RPS-PC,process:3076, Role=CoherenceServer
+)
+    Member(Id=4, Timestamp=2017-06-14 04:11:43.23, Address=192.168.5.222:8090, M
+achineId=33010, Location=site:,machine:RPS-PC,process:3916, Role=CoherenceConsol
+e)
+    Member(Id=5, Timestamp=2017-06-14 04:12:10.085, Address=192.168.5.225:8090,
+MachineId=33010, Location=site:,machine:RPS-PC,process:1744, Role=CoherenceConso
+le)
+    Member(Id=6, Timestamp=2017-06-14 04:13:22.422, Address=192.168.5.174:8088,
+MachineId=33010, Location=site:,machine:RPS-PC,process:2472, Role=CoherenceServe
+r)
+    Member(Id=7, Timestamp=2017-06-14 04:19:35.208, Address=192.168.5.174:8090,
+MachineId=33010, Location=site:,machine:RPS-PC,process:2736, Role=CoherenceConso
+le)
+    )
+  MemberId|ServiceVersion|ServiceJoined|MemberState
+    1|12.1.2|2017-06-14 04:09:47.688|JOINED,
+    2|12.1.2|2017-06-14 04:09:53.21|JOINED,
+    4|12.1.2|2017-06-14 04:11:43.23|JOINED,
+    5|12.1.2|2017-06-14 04:12:10.085|JOINED,
+    6|12.1.2|2017-06-14 04:13:22.422|JOINED,
+    7|12.1.2|2017-06-14 04:19:35.208|JOINED
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=1
+    Member(Id=3, Timestamp=2017-06-14 16:40:51.994, Address=192.168.5.222:8090,
+MachineId=33010)
+    )
+  )
+
+TcpRing{Connections=[5, 6]}
+IpMonitor{Addresses=0}
+
+2017-06-14 16:49:35.929/5.117 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invoca
+tion:Management, member=7): Service Management joined the cluster with senior se
+rvice member 1
+2017-06-14 16:49:36.007/5.195 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=7): Loaded Reporter configuration from "jar:file:/C:/Oracle/Middleware/
+Oracle_Home/coherence/lib/coherence.jar!/reports/report-group.xml"
+
+Map (?): cache mytest
+2017-06-14 16:49:40.344/9.532 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=7): Loaded cache configuration from "jar:file:/C:/Oracle/Middleware/Ora
+cle_Home/coherence/lib/coherence.jar!/coherence-cache-config.xml"
+2017-06-14 16:49:40.469/9.657 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=7): Loaded cache configuration from "jar:file:/C:/Oracle/Middleware/Ora
+cle_Home/coherence/lib/coherence.jar!/internal-txn-cache-config.xml"
+2017-06-14 16:49:40.671/9.859 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=7): Created cache factory com.tangosol.net.ExtensibleConfigurableCacheF
+actory
+2017-06-14 16:49:40.843/10.031 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Distr
+ibutedCache, member=7): Service DistributedCache joined the cluster with senior
+service member 1
+
+Cache Configuration: mytest
+  SchemeName: example-distributed
+  AutoStart: true
+  ServiceName: DistributedCache
+  BackingMapScheme
+    InnerScheme (LocalScheme)
+      SchemeName: example-binary-backing-map
+      UnitCalculatorBuilder
+        Calculator: BINARY
+      EvictionPolicyBuilder
+        Policy: HYBRID
+      ExpiryDelay: 1h
+      UnitFactor: 1
+  PartitionedCacheService
+    ThreadPriority: 10
+    EventDispatcherThreadPriority: 10
+    WorkerPriority: 5
+    ActionPolicy: {NullActionPolicy allowed-actions=*}
+    BackupsPreferred: 1
+    DistributionAggressiveness: 20
+    DistributionSynchronized: true
+    PartitionsPreferred: 257
+    PartitionAssignmentStrategy: SimpleAssignmentStrategy{}
+    TransferThreshold: 524288
+    BackupAfterWriteBehind: 1
+    StrictPartitioning: true
+
+Map (mytest): list
+name = MJ
+age = 26
+put = age
+
+Map (mytest): put sajoo thomas
+null
+
+Map (mytest): list
+put = age
+sajoo = thomas
+age = 26
+name = MJ
+
+Map (mytest):
+2017-06-14 16:53:44.435/253.623 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clus
+ter, member=7): Member(Id=4, Timestamp=2017-06-14 16:53:44.435, Address=192.168.
+5.222:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:3916, Role=Co
+herenceConsole) left Cluster with senior member 1
+2017-06-14 16:53:44.435/253.623 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Dist
+ributedCache, member=7): Member 4 left service DistributedCache with senior memb
+er 1
+2017-06-14 16:53:44.435/253.623 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invo
+cation:Management, member=7): Member 4 left service Management with senior membe
+r 1
+2017-06-14 16:53:44.435/253.623 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clus
+ter, member=7): MemberLeft notification for Member(Id=4, Timestamp=2017-06-14 16
+:53:44.435, Address=192.168.5.222:8090, MachineId=33010, Location=site:,machine:
+RPS-PC,process:3916, Role=CoherenceConsole) received from Member(Id=5, Timestamp
+=2017-06-14 04:12:10.085, Address=192.168.5.225:8090, MachineId=33010, Location=
+site:,machine:RPS-PC,process:1744, Role=CoherenceConsole)
+
+Map (mytest):
+2017-06-14 16:53:48.163/257.351 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clus
+ter, member=7): Member(Id=8, Timestamp=2017-06-14 04:23:47.929, Address=192.168.
+5.222:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:3276, Role=Co
+herenceConsole) joined Cluster with senior member 1
+
+Map (mytest):
+2017-06-14 16:53:48.429/257.617 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invo
+cation:Management, member=7): Member 8 joined Service Management with senior mem
+ber 1
+
+Map (mytest):
+2017-06-14 16:53:55.932/265.120 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Dist
+ributedCache, member=7): Member 8 joined Service DistributedCache with senior me
+mber 1
+
+Map (mytest):
+2017-06-14 17:05:34.572/963.760 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invo
+cation:Management, member=7): Member 1 left service Management with senior membe
+r 1
+2017-06-14 17:05:34.572/963.760 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Dist
+ributedCache, member=7): Member 1 left service DistributedCache with senior memb
+er 1
+2017-06-14 17:05:34.572/963.760 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clus
+ter, member=7): Member(Id=1, Timestamp=2017-06-14 17:05:34.572, Address=192.168.
+5.225:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:1884, Role=Co
+herenceServer) left Cluster with senior member 2
+2017-06-14 17:05:34.572/963.760 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clus
+ter, member=7): MemberLeft notification for Member(Id=1, Timestamp=2017-06-14 17
+:05:34.572, Address=192.168.5.225:8088, MachineId=33010, Location=site:,machine:
+RPS-PC,process:1884, Role=CoherenceServer) received from Member(Id=2, Timestamp=
+2017-06-14 04:09:53.21, Address=192.168.5.222:8088, MachineId=33010, Location=si
+te:,machine:RPS-PC,process:3076, Role=CoherenceServer)
+
+Map (mytest):
+2017-06-14 17:05:36.460/965.648 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clus
+ter, member=7): TcpRing disconnected from Member(Id=5, Timestamp=2017-06-14 04:1
+2:10.085, Address=192.168.5.225:8090, MachineId=33010, Location=site:,machine:RP
+S-PC,process:1744, Role=CoherenceConsole) due to a peer departure; removing the
+member.
+2017-06-14 17:05:36.460/965.648 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clus
+ter, member=7): Member(Id=5, Timestamp=2017-06-14 17:05:36.46, Address=192.168.5
+.225:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:1744, Role=Coh
+erenceConsole) left Cluster with senior member 2
+2017-06-14 17:05:36.460/965.648 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Dist
+ributedCache, member=7): Member 5 left service DistributedCache with senior memb
+er 2
+2017-06-14 17:05:36.460/965.648 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invo
+cation:Management, member=7): Member 5 left service Management with senior membe
+r 2
+
+Map (mytest): list
+age = 26
+name = MJ
+put = age
+sajoo = thomas
+
+
+
+
+
+
+----------------------------------------------------------------
+Day 2
+----------------------------------------------------------------
+
+
+Caches:
+===============================
+
+OC Programmming model:
+
+Stores key/value based data structures
+uses get and put.
+Random access.
+Works identical to java.util.Map
+
+OC was developed in Java. And the NamedCached is nothing but an interface similar to java.util.Map interface.
+
+CacheMap, ConcurrentMap... implmenets NamedCache.
+
+
+NamedCache myCache = CacheFactor.getCache("myCache");
+
+get(key)
+put(key, value)
+putAll 
+
+we will not use put which is very basic in a multi threaded environment.
+
+
+*** The Term Distributed and Partititioned toplogy refer to the same pattern.
+*** The term map and cache are often used interchangably.
+
+Any Node in the cluster can receive the request from the client (even if it does not have the data). But since the node has the metadata, it will connect to the right data node.
+
+
+
+Cache definitions are defined in coherence-cache-config.xml
+will contain 
+1. the names of our caches (it is recommended to get the cache name identitical to your table or entity).
+- Wildcard can be used to define the cache in the config.... ex instead of mentioning all 100 tables cache name.... we  can use '*', but this is not recommended. (or we can use 'customer*' ).
+
+2. Definintg the schemes of the cache. (distributed, replicated...)
+
+use-case, In a cluster we have a few cache (cstomer, product) which we will use only for read operation, And caches (order, inventory) for both read and write.
+
+ex. If we specify the customer and product schem is repliated. It will have a copy on all nodes, which is ultra fast. And since this is read caches only, it will not ahve any overhead.
+
+
+For distributed (write) scheam, the invetory cache will be created in two nodes. one as primary and one as backup.
+
+
+
+**** Default Partition is 257. 
+
+**** Default Backup count is 1 (this can be made 0 or more).
+
+
+ex. if we have 1 million customer records to be loaded to a CustomerCache.... in a 10 storage node cluster. OC will distribute this 1 million rec across nodes ... almost evenly. (we cannot control which node the data gets distributed).
+
+
+
+
+
+
+
+
+
+
+  <caching-scheme-mapping>
+    <cache-mapping>
+      <cache-name>myCache</cache-name>
+      <scheme-name>example-distributed</scheme-name>    --> This is the scheme used... schedm defintiation below....
+      <init-params>
+        <init-param>
+          <param-name>back-size-limit</param-name>
+          <param-value>8MB</param-value>
+        </init-param>
+      </init-params>
+    </cache-mapping>
+
+
+
+
+  <caching-schemes>
+    <!--
+    Distributed caching scheme.
+    -->
+    <distributed-scheme>
+      <scheme-name>example-distributed</scheme-name>       --> This is the schem definitiona.
+      <service-name>DistributedCache</service-name>
+
+      <backing-map-scheme>
+        <local-scheme>
+          <scheme-ref>example-binary-backing-map</scheme-ref>
+        </local-scheme>
+      </backing-map-scheme>
+
+      <autostart>true</autostart>
+    </distributed-scheme>
+
+
+
+
+
+
+In the backing-map-scheme, we mention the overflow and backup plan.
+
+
+*** Only the values will be moved to backup ... the key will still remain in the cache.
+
+So if we issue get with the key... the value will be fetch frsom the persistnance storage.
+
+
+*** we cannot specify if a cache is read only or write only.
+
+
+---------------------
+
+Single Server Cluster:
+
+
+is a cluster that runs on a single computer.
+does not access the network
+used for development.
+
+
+
+
+------------------------------
+
+
+Sample Eclipse OC CLient program:
+-------------------------------------
+
+In the dfault cache config present in the conherance.jar, this entry is responsible for setting up your cache.
+
+    <cache-mapping>
+      <cache-name>*</cache-name>
+      <scheme-name>example-distributed</scheme-name>
+    </cache-mapping>
+  </caching-scheme-mapping>
+
+  <caching-schemes>
+  
+  
+  
+
+We can ran a simple java program from Eclisep, by adding the cohenance jar.
+
+
+
+import java.util.Map;
+import java.util.Set;
+
+import com.tangosol.net.CacheFactory;
+import com.tangosol.net.NamedCache;
+
+
+public class HelloWorld {
+
+	/**
+	 * @param args
+	 */
+	
+	
+	public static void main(String[] args) {
+		
+
+	    NamedCache cache= CacheFactory.getCache("testcache");
+      	cache.put("MA","Massachustts");
+        cache.put("NH","New Hampshire");
+        cache.put("CT","Connecticut");
+        
+        
+        Set<Map.Entry> entries = cache.entrySet(null,null);
+        for (Map.Entry entry: entries) {
+        	System.out.println("Returned '"+entry.getKey()+"' for '"+entry.getValue()+"'");
+        }
+     
+        cache.put("MA", "Massachusetts");
+        String value = (String)cache.get("MA");
+    	System.out.println("Returned '"+value+"' for 'MA'");
+        
+	}
+
+}
+
+
+
+Output:
+
+2017-06-15 11:58:18.684/0.369 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2017-06-15 11:58:18.730/0.415 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
+2017-06-15 11:58:18.731/0.416 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/tangosol-coherence-override.xml" is not specified
+2017-06-15 11:58:18.735/0.420 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
+2017-06-15 11:58:18.735/0.420 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
+2017-06-15 11:58:18.736/0.421 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 12.1.2.0.0 Build 44396
+ Grid Edition: Development mode
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+2017-06-15 11:58:18.993/0.677 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded cache configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/coherence-cache-config.xml"
+2017-06-15 11:58:19.103/0.788 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Loaded cache configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/internal-txn-cache-config.xml"
+2017-06-15 11:58:19.414/1.099 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.ExtensibleConfigurableCacheFactory
+2017-06-15 11:58:19.759/1.444 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=main, member=n/a): TCMP bound to /192.168.5.174:8088 using SystemDatagramSocketProvider
+2017-06-15 11:58:23.096/4.781 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Cluster, member=n/a): Created a new cluster "Cluster1" with Member(Id=1, Timestamp=2017-06-15 11:58:19.857, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2656, Role=HelloWorldHelloWorld, Edition=Grid Edition, Mode=Development, CpuCount=4, SocketCount=4)
+2017-06-15 11:58:23.098/4.783 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=n/a): Started cluster Name=Cluster1
+
+Group{Address=224.12.1.0, Port=12100, TTL=0}
+
+MasterMemberSet(
+  ThisMember=Member(Id=1, Timestamp=2017-06-15 11:58:19.857, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2656, Role=HelloWorldHelloWorld)
+  OldestMember=Member(Id=1, Timestamp=2017-06-15 11:58:19.857, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2656, Role=HelloWorldHelloWorld)
+  ActualMemberSet=MemberSet(Size=1
+    Member(Id=1, Timestamp=2017-06-15 11:58:19.857, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2656, Role=HelloWorldHelloWorld)
+    )
+  MemberId|ServiceVersion|ServiceJoined|MemberState
+    1|12.1.2|2017-06-15 11:58:19.857|JOINED
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=0
+    )
+  )
+
+TcpRing{Connections=[]}
+IpMonitor{Addresses=0}
+
+2017-06-15 11:58:23.134/4.819 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=1): Service Management joined the cluster with senior service member 1
+2017-06-15 11:58:23.156/4.841 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=1): Loaded Reporter configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/reports/report-group.xml"
+2017-06-15 11:58:23.363/5.049 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=1): Service DistributedCache joined the cluster with senior service member 1
+Returned 'CT' for 'Connecticut'
+Returned 'MA' for 'Massachustts'
+Returned 'NH' for 'New Hampshire'
+Returned 'Massachusetts' for 'MA'
+2017-06-15 11:58:23.423/5.109 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=ShutdownHook, member=1): ShutdownHook: stopping cluster node
+
+
+
+
+
+-----
+
+
+
+For Local Developer... 
+
+
+
+
+STep 1: Start a local single cluster server:
+
+tangosol-coherence-override-dev
+
+<?xml version='1.0'?>
+
+<!--
+This operational configuration override file is set up for use with Coherence in
+a development mode.
+-->
+
+<coherence  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xmlns="http://xmlns.oracle.com/coherence/coherence-operational-config"
+            xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-operational-config coherence-operational-config.xsd"
+            xml-override="/tangosol-coherence-override.xml">    
+
+  <cluster-config>
+	  <member-identity>
+		<cluster-name system-property="tangosol.coherence.cluster">sajoo</cluster-name>
+	  </member-identity>
+	  
+    <multicast-listener>
+	  <address system-property="tangosol.coherence.clusteraddress">224.12.1.1</address>
+      <port system-property="tangosol.coherence.clusterport">12100</port>
+	  
+	  
+      <time-to-live system-property="tangosol.coherence.ttl">0</time-to-live>        ***** TTL=0 !!!
+      <join-timeout-milliseconds>3000</join-timeout-milliseconds>
+    </multicast-listener>
+  </cluster-config>
+
+  <logging-config>
+    <severity-level system-property="tangosol.coherence.log.level">5</severity-level>
+    <character-limit system-property="tangosol.coherence.log.limit">0</character-limit>
+  </logging-config>
+</coherence>
+
+
+
+
+
+Step2: Start the cache-server.
+
+
+Group{Address=224.12.1.1, Port=12100, TTL=0}
+
+MasterMemberSet(
+  ThisMember=Member(Id=1, Timestamp=2017-06-15 12:04:22.199, Address=192.168.5.1
+74:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:1668, Role=Coher
+enceServer)
+  OldestMember=Member(Id=1, Timestamp=2017-06-15 12:04:22.199, Address=192.168.5
+.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:1668, Role=Coh
+erenceServer)
+  ActualMemberSet=MemberSet(Size=1
+    Member(Id=1, Timestamp=2017-06-15 12:04:22.199, Address=192.168.5.174:8088,
+MachineId=33010, Location=site:,machine:RPS-PC,process:1668, Role=CoherenceServe
+r)
+    )
+  MemberId|ServiceVersion|ServiceJoined|MemberState
+    1|12.1.2|2017-06-15 12:04:22.199|JOINED
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=0
+    )
+  )
+
+TcpRing{Connections=[]}
+IpMonitor{Addresses=0}
+
+
+Started DefaultCacheServer...
+
+
+*** This is member id 1 which is the senior member.
+
+
+
+
+
+Step3: Start the command line consode ... coherance.cmd.
+
+
+2017-06-15 12:09:07.325/286.632 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clus
+ter, member=1): Member(Id=2, Timestamp=2017-06-15 12:09:07.161, Address=192.168.
+5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:3204, Role=Co
+herenceConsole) joined Cluster with senior member 1
+2017-06-15 12:09:07.519/286.826 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invo
+cation:Management, member=1): Member 2 joined Service Management with senior mem
+ber 1
+
+
+
+This get added as the Member 2.
+
+
+
+
+
+Step 3: In eclipse, hello world program in the JVM arguments...
+
+
+-Dtangosol.coherence.override=C:\Oracle\classpath\tangosol-coherence-override-dev.xml
+
+///**** -Dtangosol.coherence.cluster=Cluster1  --- this is not required since we are already poininting ot the overrid file which has all the cache server details.
+
+
+
+The Helloworld will start a JVM and OC node (no storage enable), which will connect to the Storage Enable cache server node, write the cache, and terminate.
+
+
+*** any java program by default ... will be a strorage disabled node.
+
+
+
+2017-06-15 12:32:33.156/1692.463 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clu
+ster, member=1): Member(Id=5, Timestamp=2017-06-15 12:32:32.975, Address=192.168
+.5.174:8092, MachineId=33010, Location=site:,machine:RPS-PC,process:1268, Role=H
+elloWorldHelloWorld) joined Cluster with senior member 1
+2017-06-15 12:32:33.436/1692.743 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Inv
+ocation:Management, member=1): Member 5 joined Service Management with senior me
+mber 1
+2017-06-15 12:32:33.712/1693.019 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Dis
+tributedCache, member=1): Transferring 0KB of backup[1] for PartitionSet{128..25
+6} to member 5
+2017-06-15 12:32:33.712/1693.019 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Dis
+tributedCache, member=1): Member 5 joined Service DistributedCache with senior m
+ember 1
+2017-06-15 12:32:33.776/1693.083 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clu
+ster, member=1): TcpRing disconnected from Member(Id=5, Timestamp=2017-06-15 12:
+32:32.975, Address=192.168.5.174:8092, MachineId=33010, Location=site:,machine:R
+PS-PC,process:1268, Role=HelloWorldHelloWorld) due to a peer departure; removing
+ the member.
+2017-06-15 12:32:33.776/1693.083 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clu
+ster, member=1): Member(Id=5, Timestamp=2017-06-15 12:32:33.776, Address=192.168
+.5.174:8092, MachineId=33010, Location=site:,machine:RPS-PC,process:1268, Role=H
+elloWorldHelloWorld) left Cluster with senior member 1
+2017-06-15 12:32:33.776/1693.083 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Inv
+ocation:Management, member=1): Member 5 left service Management with senior memb
+er 1
+2017-06-15 12:32:33.776/1693.083 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Dis
+tributedCache, member=1): Member 5 left service DistributedCache with senior mem
+ber 1
+
+
+
+
+*** in the JVM arg, we can overrid any value in the conf file.
+
+
+
+
+
+------
+
+
+Working with Objects:
+--------------------------------------------------------------------
+
+Objects become Entiies when they are assinged an Identiy. This valud should not change over the lifetime of the object. (natural idnetify or surrogate identify).
+
+Identiry Types:
+1. May be a based on a primite type or wapper type.
+2. Must implment equals() and hashcode()
+
+
+
+
+The java objects which we want to load to OC cache, need to be -
+1. Should implement Serializable, ExternalizableLite. (some form on serialization)
+2. POJO
+3. May support Comparable. (for order)
+4. Should provide suppoprt for identify.
+
+
+public class AirPort implements Serializable, Comparable{
+
+	private static final long serialVersionUID = ...;  //Right clieck to geneate. values 1L or random number.
+
+	private int id;
+	private String code;      //All composition classes should also be Serializable.
+	private String city; 
+
+}
+
+
+
+
+Identity key -
+
+
+
+
+
+--
+
+Aggregate Objects:
+Composite entities. 
+Composed of a root entities and one or more dependent or weak entities.
+Typically sored in the same cache.
+
+
+Dependent Entities.
+Typically have no meaning without their owner.
+Address have no meaning without their Customer
+Ideally should be in the same node as the Parent root entity.
+
+
+Customer  ->  Address.
+getId
+getAddress
+
+
+
+To ensure both these objects are stored in the same cache (for faster retrieve), we use the key work "KeyAssociate". this will make OC give priority to store both objects in the same node.
+
+
+
+Properties of Relationships ....
+
+
+Cardiniatliy ..... TO DO **************************
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------
+
+Serializaition Concepts.
+
+
+FOr OC, consider using Exernalizable or ExternalizableLite or POF (Portable OBject Format) which is more effecient than Seriazable as it is more light weight.
+
+
+POF is the faster by additional work for the developer. Must code readExternal() and writeExternal() methods on entities and configraiton and assignemne tof identieiers for each objects.
+
+Seriazble impacs CPU, Network/Memory, Cache capacity.
+
+
+This will help OC for the network transmision between nodes for replications. It will not reduce the size of the object in the heap memory.
+
+
+
+readExternal() for repopulates object.
+writeExternal() for storing the object.
+
+POF is highly recommended.
+1. Langaulage indepdent binary format created for Coherence.
+2. Has API's for Java, .NET, and C++
+3. Serialized data faster and providers smaller results 10:1.
+4. Support data versioning for forward and backward compatiblitiy. (Adding elements to the entity, and without clearing the OC cache, we make the cache support the update entity objects. This is possible only with POF.
+5. POF is indexed where if only one field changes, only that field will be transmitted. IN other serializaations, the entier object is transmitted.
+6. The addintao POC serialized code is externzlained so tis not prsent in the same POJO class which reduces the class size.
+
+
+regisatraiton in a pof-config.xml.
+
+
+
+
+
+
+-----------------
+
+
+Sample#2: Composite object with serialization:
+
+
+
+
+
+package retail;
+
+import java.io.Serializable;
+
+public class Customer implements Serializable, Entity<Long> {
+
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 10L;
+	private Long id;
+	private String name;
+	private Address address;
+	
+	@Override
+	public Long getId() {
+		return id;
+	}
+
+
+	public Customer(Long id, String name, Address address) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("Customer:\n");
+		sb.append("\tID:").append(id).append("\n");
+		sb.append("\tName:").append(name).append("\n");
+		sb.append(address.toString(1)).append("\n");
+		
+		return sb.toString();
+	}
+	
+	
+}
+
+
+
+
+
+
+
+retail.customers
+
+
+package retail.test;
+
+import retail.Address;
+import retail.Customer;
+import com.tangosol.net.CacheFactory;
+import com.tangosol.net.NamedCache;
+import com.tangosol.util.Base;
+import com.tangosol.util.Binary;
+import com.tangosol.util.ExternalizableHelper;
+
+public class TestCustomer {
+
+	
+	public static void main(String[] args) {
+
+        NamedCache cache=
+            CacheFactory.getCache("retail.customers");
+      
+        cache.clear();
+      
+
+        Address address = new Address("8 Van de Graaf Drive", "Burlington", "MA","01803");
+        
+        Customer customer = new Customer(1l,"Bill Iards",address);
+        cache.put(customer.getId(),customer);
+        
+        Binary binValue = null;
+        binValue = ExternalizableHelper.toBinary(customer);  
+        System.out.println("\n\nBinary value ("+binValue.length()+"):" + Base.toHexDump(binValue.toByteArray(), 16) +"\n\n");
+        Customer customerOut = (Customer)cache.get(customer.getId());
+        
+        System.out.println("Returned: " + customerOut);
+	}	
+}
+
+
+
+
+
+
+
+Output:
+
+2017-06-15 14:34:29.669/2.100 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=6): Service DistributedCache joined the cluster with senior service member 1
+2017-06-15 14:34:29.700/2.131 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=DistributedCache, member=6): Asking member 1 for primary ownership of PartitionSet{0..127}
+
+
+*** 339 is the size in bytes.
+
+Binary value (339):0000:  0B AC ED 00 05 73 72 00 0F 72 65 74 61 69 6C 2E  .¬í..sr..retail.
+0010:  43 75 73 74 6F 6D 65 72 00 00 00 00 00 00 00 0A  Customer........
+0020:  02 00 03 4C 00 07 61 64 64 72 65 73 73 74 00 10  ...L..addresst..
+0030:  4C 72 65 74 61 69 6C 2F 41 64 64 72 65 73 73 3B  Lretail/Address;
+0040:  4C 00 02 69 64 74 00 10 4C 6A 61 76 61 2F 6C 61  L..idt..Ljava/la
+0050:  6E 67 2F 4C 6F 6E 67 3B 4C 00 04 6E 61 6D 65 74  ng/Long;L..namet
+0060:  00 12 4C 6A 61 76 61 2F 6C 61 6E 67 2F 53 74 72  ..Ljava/lang/Str
+0070:  69 6E 67 3B 78 70 73 72 00 0E 72 65 74 61 69 6C  ing;xpsr..retail
+0080:  2E 41 64 64 72 65 73 73 00 00 00 00 00 00 00 01  .Address........
+0090:  02 00 04 4C 00 04 63 69 74 79 71 00 7E 00 03 4C  ...L..cityq.~..L
+00A0:  00 05 73 74 61 74 65 71 00 7E 00 03 4C 00 06 73  ..stateq.~..L..s
+00B0:  74 72 65 65 74 71 00 7E 00 03 4C 00 03 7A 69 70  treetq.~..L..zip
+00C0:  71 00 7E 00 03 78 70 74 00 0A 42 75 72 6C 69 6E  q.~..xpt..Burlin
+00D0:  67 74 6F 6E 74 00 02 4D 41 74 00 14 38 20 56 61  gtont..MAt..8 Va
+00E0:  6E 20 64 65 20 47 72 61 61 66 20 44 72 69 76 65  n de Graaf Drive
+00F0:  74 00 05 30 31 38 30 33 73 72 00 0E 6A 61 76 61  t..01803sr..java
+0100:  2E 6C 61 6E 67 2E 4C 6F 6E 67 3B 8B E4 90 CC 8F  .lang.Long;?ä?Ì?
+0110:  23 DF 02 00 01 4A 00 05 76 61 6C 75 65 78 72 00  #ß...J..valuexr.
+0120:  10 6A 61 76 61 2E 6C 61 6E 67 2E 4E 75 6D 62 65  .java.lang.Numbe
+0130:  72 86 AC 95 1D 0B 94 E0 8B 02 00 00 78 70 00 00  r?¬?..?à?...xp..
+0140:  00 00 00 00 00 01 74 00 0A 42 69 6C 6C 20 49 61  ......t..Bill Ia
+0150:  72 64 73                                         rds             
+
+
+Returned: Customer:
+	ID:1
+	Name:Bill Iards
+		Address:
+			Street:8 Van de Graaf Drive
+			City:Burlington
+			State:MA
+			Zip:01803
+
+
+
+
+
+
+
+			
+This will load the object to OC cache. But in the cmd line, we will not be able to list this object, since the class is not present in the coherence.cmd
+
+To resolve, this package the jar, and add it to the coherence.cmd classpath.
+
+
+%java_exec% -server -showversion %java_opts% -cp "C:\Oracle\classpath\retail.jar;C:\Oracle\classpath;%coherence_home%\lib\coherence.jar;" com.tangosol.net.CacheFactory %1
+
+
+
+
+Sample#3
+
+POF implemneation of serialization:
+
+
+
+package retail.test;
+
+import retail.*;
+
+import com.tangosol.io.pof.PortableObjectSerializer;
+import com.tangosol.io.pof.SimplePofContext;
+import com.tangosol.net.CacheFactory;
+import com.tangosol.net.NamedCache;
+import com.tangosol.util.Binary;
+import com.tangosol.util.ExternalizableHelper;
+import com.tangosol.util.Base;
+
+public class TestCustomer {
+
+	
+	public static void main(String[] args) {
+
+		 NamedCache cache=
+	            CacheFactory.getCache("retail.customers");
+	      
+	        cache.clear();
+        SimplePofContext ctx = new SimplePofContext();
+        ctx.registerUserType(1000, Customer.class ,new PortableObjectSerializer(1000));
+        ctx.registerUserType(1001, Address.class ,new PortableObjectSerializer(1001));
+        
+       
+        Address address = new Address("8 Van de Graaf Drive", "Burlington", "MA","01803");
+        Customer original =  new Customer(1l,"Bill Iards",address);
+        
+        System.out.println("Original: " + original);      
+        
+        Binary binary   = ExternalizableHelper.toBinary(original, ctx);
+        cache.put(original.getId(),binary);
+        System.out.println("\n\nBinary value ("+binary.length()+"):" + Base.toHexDump(binary.toByteArray(), 16) +"\n\n");
+
+       Object copy     = ExternalizableHelper.fromBinary(binary, ctx);  
+        System.out.println("Returned: " + copy);
+        System.out.println("Copy: " + original);      
+        
+	}	
+}
+
+
+
+
+
+Binary value (75):00:  15 A8 0F 00 00 42 01 01 4E 0A 42 69 6C 6C 20 49  .¨...B..N.Bill I
+10:  61 72 64 73 02 A9 0F 00 00 4E 14 38 20 56 61 6E  ards.©...N.8 Van
+20:  20 64 65 20 47 72 61 61 66 20 44 72 69 76 65 01   de Graaf Drive.
+30:  4E 0A 42 75 72 6C 69 6E 67 74 6F 6E 02 4E 02 4D  N.Burlington.N.M
+40:  41 03 4E 05 30 31 38 30 33 40 40                 A.N.01803@@     
+
+
+Returned: Customer:
+	ID:1
+	Name:Bill Iards
+	Address:
+		Street:8 Van de Graaf Drive
+		City:Burlington
+		State:MA
+		Zip:01803
+
+
+Copy: Customer:
+	ID:1
+	Name:Bill Iards
+	Address:
+		Street:8 Van de Graaf Drive
+		City:Burlington
+		State:MA
+		Zip:01803
+
+
+2017-06-15 14:54:29.022/2.264 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=ShutdownHook, member=2): ShutdownHook: stopping cluster node
+
+
+************ POF is the recommend approach ******************
+
+*** SO basically, POF is reducing the size of the boject, before loading to the cache.
+
+
+----------------------------------------------------------------------------
+
+
+Coherance Cache Topology:
+-----------------------------------
+
+
+1. Local cache.
+
+local to one system, and the heap in that one node only stores the data.
+
+
+use-case of local cache is used only for near cache. Near cache uses local cache as one of its cache (front (uses local) / back cache (uses cluster) ).
+
+
+Practice.04.01.solution project.
+
+Open 2 dos prompt... and run twice... to create 2 nodes with 2 diff from and start... they both will join a cluster, and will be independent.
+
+src>cachetester.cmd -s 1 -f 9
+src>cachetester.cmd -s 10 -f 20
+
+
+
+
+2. Replicated Cache.
+
+Cluster having more than one node, once one node receives teh data (and stored natively), it will create a copy of the data on all the other nodes (in serializable form).
+
+When a request goes to a node haveing data in the serialized form, it has to be de-serialized to be returned back to the client.
+
+No metadata is maintained for replicated cache.
+
+Not recommended for heavy writgin.
+
+
+Native FOrm -> if we put the object dreictly (put) into the cache... it is in its native form.
+
+Serialized form -> we covert to binary  and then put. (ideally, this is not really required, since htis is required only when searilization for network). 
+
+
+The replicated object will remain in the serialized form until a write operation.
+
+
+The object will not be avaiable till the replication are completed.
+
+**check later if there is any advantage?
+
+
+
+
+in the scheme, we mention the replicated scheme.
+
+
+backing map scheme -> specifcy what type of map to store with the cache server.
+
+
+
+
+
+Practice.04.02.solution project.
+
+Open 2 dos prompt... and run twice... to create 2 nodes with same start and end.
+
+src>cachetester.cmd -s 10 -f 20
+src>cachetester.cmd -s 10 -f 20
+
+
+
+
+*** All the read/write operations for a cache will be done first only on the primary node, and not the back up node.
+
+Even if the read goes to a backup node... it will not service the rquest, and will redirect to the primary based on the meta data.
+
+
+
+
+*** For replicated and local cache, there is no partiitons.
+
+
+
+3. Partioned Cache (Data is distributed)
+
+aka distributed cache.
+
+best for writing. (little slower reads).
+
+organizes caches entries into partitions. evently balances the partitions across members of the cluster.
+
+
+ex. if we have a 3 node cluster... 257 partion / 3 nodes = 85.33 partitions in each node. (half for data and half for backup).
+
+all members manger their fair share of both primary and backup paritios.
+
+cache entries are store in the binary form.
+
+
+
+Partition cache fault tolereance -> membership changes as new members join or leave.
+
+
+
+*** recommended for large data.
+
+
+project: Practice.04.03.solution
+
+
+run 2 cmds
+cachetester.cmd
+cachetester.cmd -s 5 -f 10
+
+
+
+Near cache concurrency options
+
+Seppuku; Event based 'kill yourself' invalidation (if back cache changes, the local cache will be invalidated)
+Standard expiry: LFU, LRU 
+
+
+High unites - no of recs to be stored in the local cache.
+
+
+
+
+4. Near cache.
+
+
+Front Cache (local)    Back Cache (cluster).
+
+All writes will go to the back cache.
+
+All reads to the local cache, and if not found, then will go to the back cache to fetch the data. WIll retrun to the client and also store the data, to server future calls faster.
+
+OC has a invaldate strategy to ensure the local cache is invalidated, if the data changes.
+
+** Client who wants to uses OC for reads and writs can use this topology.
+
+
+** The back cache here is a partitioned cache.
+
+
+** for faster reads, we can size and configure a node with more RAM to act as the front cache....
+
+
+
+*** The Near Cach is present inthe Application Node or Process node. (It is not in the storagte node).
+
+
+
+Practice.04.04.solution
+
+
+cmd:
+
+cachetester
+
+
+c:\Oracle\student\practices\Practice.04.04.solution\src>cachetester
+java version "1.7.0_51"
+Java(TM) SE Runtime Environment (build 1.7.0_51-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 24.51-b03, mixed mode)
+
+Start=0
+Finish=5
+2017-06-16 11:30:43.202/0.363 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, m
+ember=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middlewar
+e/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2017-06-16 11:30:43.204/0.365 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, m
+ember=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/suppo
+rt/coherence-tools-1.0.jar!/tangosol-coherence-override-dev.xml"
+2017-06-16 11:30:43.204/0.365 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, m
+ember=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/suppo
+rt/coherence-tools-1.0.jar!/tangosol-coherence-override.xml"
+2017-06-16 11:30:43.209/0.370 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "cache-factory-config.xml" is not spec
+ified
+2017-06-16 11:30:43.210/0.371 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "cache-factory-builder-config.xml" is
+not specified
+2017-06-16 11:30:43.210/0.371 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 12.1.2.0.0 Build 44396
+ Grid Edition: Development mode
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+2017-06-16 11:30:43.380/0.541 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=n/a): Loaded cache configuration from "file:/C:/Oracle/student/practice
+s/Practice.04.04.solution/config/coherence-cache-config.xml"; this document does
+ not refer to any schema definition and has not been validated.
+2017-06-16 11:30:43.578/0.739 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=n/a): Created cache factory com.tangosol.net.ExtensibleConfigurableCach
+eFactory
+2017-06-16 11:30:43.937/1.098 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=main,
+member=n/a): TCMP bound to /192.168.5.174:8088 using SystemDatagramSocketProvide
+r
+2017-06-16 11:30:59.862/17.023 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Clu
+ster, member=n/a): Created a new cluster "cluster:0x50C1" with Member(Id=1, Time
+stamp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088, MachineId=33010, Loca
+tion=site:,machine:RPS-PC,process:3244, Role=CacheTesterCacheTester, Edition=Gri
+d Edition, Mode=Development, CpuCount=4, SocketCount=4)
+2017-06-16 11:30:59.864/17.025 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=mai
+n, member=n/a): Started cluster Name=cluster:0x50C1
+
+Group{Address=224.12.1.0, Port=12100, TTL=0}
+
+MasterMemberSet(
+  ThisMember=Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5.1
+74:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=Cache
+TesterCacheTester)
+  OldestMember=Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5
+.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=Cac
+heTesterCacheTester)
+  ActualMemberSet=MemberSet(Size=1
+    Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088,
+MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=CacheTesterCac
+heTester)
+    )
+  MemberId|ServiceVersion|ServiceJoined|MemberState
+    1|12.1.2|2017-06-16 11:30:44.021|JOINED
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=0
+    )
+  )
+
+TcpRing{Connections=[]}
+IpMonitor{Addresses=0}
+
+2017-06-16 11:30:59.894/17.055 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invoc
+ation:Management, member=1): Service Management joined the cluster with senior s
+ervice member 1
+2017-06-16 11:30:59.932/17.093 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=mai
+n, member=1): Loaded Reporter configuration from "jar:file:/C:/Oracle/Middleware
+/Oracle_Home/coherence/lib/coherence.jar!/reports/report-group.xml"
+2017-06-16 11:31:00.125/17.286 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Distr
+ibutedCache, member=1): Service DistributedCache joined the cluster with senior
+service member 1
+2017-06-16 11:31:00.131/17.292 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clust
+er, member=1): Member(Id=2, Timestamp=2017-06-16 11:30:59.933, Address=192.168.5
+.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:1816, Role=Cac
+heTesterCacheTester) joined Cluster with senior member 1
+Loading data in cache: 0-5
+2017-06-16 11:31:00.201/17.362 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invoc
+ation:Management, member=1): Member 2 joined Service Management with senior memb
+er 1
+Pausing for 15 seconds...
+2017-06-16 11:31:00.496/17.657 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Distr
+ibutedCache, member=1): Transferring 0KB of backup[1] for PartitionSet{128..256}
+ to member 2
+2017-06-16 11:31:00.496/17.657 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Distr
+ibutedCache, member=1): Member 2 joined Service DistributedCache with senior mem
+ber 1
+2017-06-16 11:31:00.611/17.772 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=
+Cluster, member=1): Received panic from junior member Member(Id=2, Timestamp=201
+7-06-16 11:30:59.933, Address=192.168.5.174:8090, MachineId=33010, Location=site
+:,machine:RPS-PC,process:1816, Role=CacheTesterCacheTester) caused by Member(Id=
+32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:8090, MachineId=3301
+0, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceConsole)
+2017-06-16 11:31:00.660/17.821 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Distr
+ibutedCache, member=1): Transferring primary PartitionSet{0..127} to member 2 re
+questing 128
+Timing reads from the cache:
+==================================================
+Customer: ID=10 Name=Stephanie Kramer Read time=StopWatch{startTime=163539348604
+031, finishTime=163539354536383, elapsedTime=5932352 ns (0.005932 sec)}
+Customer: ID=10 Name=Stephanie Kramer Read time=StopWatch{startTime=163539356221
+834, finishTime=163539356260238, elapsedTime=38404 ns (0.000038 sec)}
+Customer: ID=10 Name=Stephanie Kramer Read time=StopWatch{startTime=163539357128
+952, finishTime=163539357139877, elapsedTime=10925 ns (0.000011 sec)}
+Customer: ID=10 Name=Stephanie Kramer Read time=StopWatch{startTime=163539357684
+148, finishTime=163539357693086, elapsedTime=8938 ns (0.000009 sec)}
+Customer: ID=10 Name=Stephanie Kramer Read time=StopWatch{startTime=163539358240
+006, finishTime=163539358249607, elapsedTime=9601 ns (0.000010 sec)}
+==================================================
+Customer: ID=6 Name=Max Xavier Read time=StopWatch{startTime=163539358943850, fi
+nishTime=163539362397849, elapsedTime=3453999 ns (0.003454 sec)}
+Customer: ID=6 Name=Max Xavier Read time=StopWatch{startTime=163539362859354, fi
+nishTime=163539362868624, elapsedTime=9270 ns (0.000009 sec)}
+Customer: ID=6 Name=Max Xavier Read time=StopWatch{startTime=163539363376146, fi
+nishTime=163539363385747, elapsedTime=9601 ns (0.000010 sec)}
+Customer: ID=6 Name=Max Xavier Read time=StopWatch{startTime=163539363842948, fi
+nishTime=163539363851555, elapsedTime=8607 ns (0.000009 sec)}
+Customer: ID=6 Name=Max Xavier Read time=StopWatch{startTime=163539364332924, fi
+nishTime=163539364342193, elapsedTime=9269 ns (0.000009 sec)}
+
+Here I am: Customer:
+        ID:6
+        Name:Max Xavier
+        Address:        Address:
+                Street:335 Woodruff Ave
+                City:Tampa
+                State:FL
+                Zip:33066
+
+        Credit Card IDs:[]
+        Order IDs:[]
+
+Here I am: Customer:
+        ID:9
+        Name:Leslie Green
+        Address:        Address:
+                Street:14789 Prospect Ave
+                City:Jim Thorpe
+                State:PA
+                Zip:18229
+
+        Credit Card IDs:[]
+        Order IDs:[]
+
+Here I am: Customer:
+        ID:10
+        Name:Stephanie Kramer
+        Address:        Address:
+                Street:100 Remsen Ave
+                City:Columbia
+                State:MD
+                Zip:21044
+
+        Credit Card IDs:[]
+        Order IDs:[]
+
+Here I am: Customer:
+        ID:8
+        Name:Gina Smith
+        Address:        Address:
+                Street:1224 Van Ness Dr
+                City:Torrance
+                State:CA
+                Zip:90501
+
+        Credit Card IDs:[]
+        Order IDs:[]
+
+2017-06-16 11:31:15.374/32.535 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invoc
+ation:Management, member=n/a): Service Management left the cluster
+2017-06-16 11:31:15.378/32.539 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Dis
+tributedCache, member=n/a): Remains to transfer before shutting down: 129 primar
+y partitions, 128 backup partitions
+2017-06-16 11:31:15.421/32.582 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Distr
+ibutedCache, member=n/a): Transferring primary PartitionSet{128..256} to member
+2 requesting 129
+2017-06-16 11:31:15.463/32.624 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Dis
+tributedCache, member=n/a): Remains to transfer before shutting down: 0 primary
+partitions, 128 backup partitions
+2017-06-16 11:31:15.696/32.858 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Distr
+ibutedCache, member=n/a): Service DistributedCache left the cluster
+2017-06-16 11:31:15.766/32.927 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Clust
+er, member=n/a): Service Cluster left the cluster
+
+
+
+
+cachetesters -s 5 -f 10
+
+
+
+
+
+
+Java HotSpot(TM) 64-Bit Server VM (build 24.51-b03, mixed mode)
+
+Start=5
+Finish=10
+2017-06-16 11:30:46.088/0.380 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, m
+ember=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middlewar
+e/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2017-06-16 11:30:46.090/0.383 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, m
+ember=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/suppo
+rt/coherence-tools-1.0.jar!/tangosol-coherence-override-dev.xml"
+2017-06-16 11:30:46.091/0.383 Oracle Coherence 12.1.2.0.0 <Info> (thread=main, m
+ember=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/student/suppo
+rt/coherence-tools-1.0.jar!/tangosol-coherence-override.xml"
+2017-06-16 11:30:46.096/0.388 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "cache-factory-config.xml" is not spec
+ified
+2017-06-16 11:30:46.097/0.389 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "cache-factory-builder-config.xml" is
+not specified
+2017-06-16 11:30:46.098/0.390 Oracle Coherence 12.1.2.0.0 <D5> (thread=main, mem
+ber=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 12.1.2.0.0 Build 44396
+ Grid Edition: Development mode
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+2017-06-16 11:30:46.258/0.550 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=n/a): Loaded cache configuration from "file:/C:/Oracle/student/practice
+s/Practice.04.04.solution/config/coherence-cache-config.xml"; this document does
+ not refer to any schema definition and has not been validated.
+2017-06-16 11:30:46.463/0.755 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main
+, member=n/a): Created cache factory com.tangosol.net.ExtensibleConfigurableCach
+eFactory
+2017-06-16 11:30:46.841/1.133 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=main,
+member=n/a): TCMP bound to /192.168.5.174:8090 using SystemDatagramSocketProvide
+r
+2017-06-16 11:31:00.133/14.425 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Clu
+ster, member=n/a): This Member(Id=2, Timestamp=2017-06-16 11:30:59.933, Address=
+192.168.5.174:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:1816,
+ Role=CacheTesterCacheTester, Edition=Grid Edition, Mode=Development, CpuCount=4
+, SocketCount=4) joined cluster "cluster:0x50C1" with senior Member(Id=1, Timest
+amp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088, MachineId=33010, Locati
+on=site:,machine:RPS-PC,process:3244, Role=CacheTesterCacheTester, Edition=Grid
+Edition, Mode=Development, CpuCount=4, SocketCount=4)
+2017-06-16 11:31:00.157/14.449 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=mai
+n, member=n/a): Started cluster Name=cluster:0x50C1
+
+Group{Address=224.12.1.0, Port=12100, TTL=0}
+
+MasterMemberSet(
+  ThisMember=Member(Id=2, Timestamp=2017-06-16 11:30:59.933, Address=192.168.5.1
+74:8090, MachineId=33010, Location=site:,machine:RPS-PC,process:1816, Role=Cache
+TesterCacheTester)
+  OldestMember=Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5
+.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=Cac
+heTesterCacheTester)
+  ActualMemberSet=MemberSet(Size=2
+    Member(Id=1, Timestamp=2017-06-16 11:30:44.021, Address=192.168.5.174:8088,
+MachineId=33010, Location=site:,machine:RPS-PC,process:3244, Role=CacheTesterCac
+heTester)
+    Member(Id=2, Timestamp=2017-06-16 11:30:59.933, Address=192.168.5.174:8090,
+MachineId=33010, Location=site:,machine:RPS-PC,process:1816, Role=CacheTesterCac
+heTester)
+    )
+  MemberId|ServiceVersion|ServiceJoined|MemberState
+    1|12.1.2|2017-06-16 11:30:44.021|JOINED,
+    2|12.1.2|2017-06-16 11:30:59.933|JOINED
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=0
+    )
+  )
+
+TcpRing{Connections=[1]}
+IpMonitor{Addresses=0}
+
+2017-06-16 11:31:00.194/14.486 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invoc
+ation:Management, member=2): Service Management joined the cluster with senior s
+ervice member 1
+2017-06-16 11:31:00.226/14.518 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=mai
+n, member=2): Loaded Reporter configuration from "jar:file:/C:/Oracle/Middleware
+/Oracle_Home/coherence/lib/coherence.jar!/reports/report-group.xml"
+2017-06-16 11:31:00.423/14.715 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Distr
+ibutedCache, member=2): Service DistributedCache joined the cluster with senior
+service member 1
+Loading data in cache: 5-10
+2017-06-16 11:31:00.461/14.753 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=Distr
+ibutedCache, member=2): Asking member 1 for primary ownership of PartitionSet{0.
+.127}
+Pausing for 15 seconds...
+2017-06-16 11:31:00.610/14.902 Oracle Coherence GE 12.1.2.0.0 <Warning> (thread=
+Cluster, member=2): Notifying the senior Member(Id=1, Timestamp=2017-06-16 11:30
+:44.021, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS
+-PC,process:3244, Role=CacheTesterCacheTester) of an unexpected cluster heartbea
+t from Member(Id=32, Timestamp=2017-06-15 12:13:28.19, Address=192.168.5.216:809
+0, MachineId=33010, Location=site:,machine:RPS-PC,process:2296, Role=CoherenceCo
+nsole)
+2017-06-16 11:31:00.624/14.916 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=Distr
+ibutedCache, member=2): Asking member 1 for primary ownership of PartitionSet{0.
+.127}
+Here I am: Customer:
+        ID:1
+        Name:James Jones
+        Address:        Address:
+                Street:38 Clark Place
+                City:San Francisco
+                State:CA
+                Zip:94121
+
+        Credit Card IDs:[]
+        Order IDs:[]
+
+Here I am: Customer:
+        ID:4
+        Name:Tobey Sandor
+        Address:        Address:
+                Street:1920 Voss Rd
+                City:Houston
+                State:TX
+                Zip:77057
+
+        Credit Card IDs:[]
+        Order IDs:[]
+
+Here I am: Customer:
+        ID:5
+        Name:Chris Sandow
+        Address:        Address:
+                Street:865 Seminole Tr
+                City:Avenel
+                State:NJ
+                Zip:07001
+
+        Credit Card IDs:[]
+        Order IDs:[]
+
+Here I am: Customer:
+        ID:2
+        Name:Scott Riley
+        Address:        Address:
+                Street:44 Pumpkin Ct
+                City:Shirley
+                State:MA
+                Zip:01464
+
+        Credit Card IDs:[]
+        Order IDs:[]
+
+Here I am: Customer:
+        ID:7
+        Name:Logan Pollard
+        Address:        Address:
+                Street:20 Pine St
+                City:Dolan Springs
+                State:AZ
+                Zip:86441
+
+        Credit Card IDs:[]
+        Order IDs:[]
+
+Here I am: Customer:
+        ID:3
+        Name:Johnny Greif
+        Address:        Address:
+                Street:76 Nile Ct
+                City:Arvata
+                State:CO
+                Zip:80001
+
+        Credit Card IDs:[]
+        Order IDs:[]
+
+2017-06-16 11:31:15.376/29.668 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invoc
+ation:Management, member=2): Member 1 left service Management with senior member
+ 1
+2017-06-16 11:31:15.393/29.685 Oracle Coherence GE 12.1.2.0.0 <D4> (thread=Distr
+ibutedCache, member=2): Asking member 1 for primary ownership of PartitionSet{12
+8..256}
+Timing reads from the cache:
+==================================================
+Customer: ID=5 Name=Chris Sandow Read time=StopWatch{startTime=163539693251507,
+finishTime=163539696473099, elapsedTime=3221592 ns (0.003222 sec)}
+Customer: ID=5 Name=Chris Sandow Read time=StopWatch{startTime=163539699236498,
+finishTime=163539699273577, elapsedTime=37079 ns (0.000037 sec)}
+Customer: ID=5 Name=Chris Sandow Read time=StopWatch{startTime=163539701125885,
+finishTime=163539701137803, elapsedTime=11918 ns (0.000012 sec)}
+Customer: ID=5 Name=Chris Sandow Read time=StopWatch{startTime=163539702657060,
+finishTime=163539702664012, elapsedTime=6952 ns (0.000007 sec)}
+Customer: ID=5 Name=Chris Sandow Read time=StopWatch{startTime=163539704020385,
+finishTime=163539704026344, elapsedTime=5959 ns (0.000006 sec)}
+==================================================
+Customer: ID=4 Name=Tobey Sandor Read time=StopWatch{startTime=163539706093513,
+finishTime=163539707655809, elapsedTime=1562296 ns (0.001562 sec)}
+Customer: ID=4 Name=Tobey Sandor Read time=StopWatch{startTime=163539709112163,
+finishTime=163539709121764, elapsedTime=9601 ns (0.000010 sec)}
+Customer: ID=4 Name=Tobey Sandor Read time=StopWatch{startTime=163539710432450,
+finishTime=163539710437747, elapsedTime=5297 ns (0.000005 sec)}
+Customer: ID=4 Name=Tobey Sandor Read time=StopWatch{startTime=163539711787167,
+finishTime=163539711792133, elapsedTime=4966 ns (0.000005 sec)}
+Customer: ID=4 Name=Tobey Sandor Read time=StopWatch{startTime=163539713132946,
+finishTime=163539713138905, elapsedTime=5959 ns (0.000006 sec)}
+==================================================
+
+
+
+
+--------------
+
+
+Elastic Data:
+----------------
+
+it is a seamless, efficient, transparte berideg bwtween memory and disk (SSD).
+
+certain amount of memory is specicired for cache, the rest spills over into flash.
+
+Eliminates Oout of Memory error.
+
+
+keys are always stored in heap. Only the object value are moved to disk.
+
+RAM + DISK.
+
+* the contents of the file on disk cannot be ready via VI editor.
+
+
+
+
+OC uses the JVM GC to clear the heap. OC will only expirey objects in caches, by removing references.
+
+
+Stores upto to 100GB of data per disk per cluster member while maintaining low latency and high throughput.
+
+
+Elastic data is based on journals.
+
+
+We can use elastic data not only for spikes to avoid OOO, but also for storing larage volumes of data which cannot be accomoodate in memory RAM.
+
+
+in the cache config file:
+<backing-map-scheme> - here we specify the RAM or Flash journal.
+
+
+in the conherence config, also we have to spicfy 
+
+
+Tyicapply sized 1:10 memory to disk.
+
+uses files, but not a persistence solution.
+
+
+<ramjournal-manager>
+and
+<flashjournal-manager>
+
+
+
+---------------------------------------------------------------------
+
+DAY 3:
+------------------
+
+
+Observing Data Grid Events:
+----------------------------
+
+register to listed for events. 
+
+Before (pre) or after (post) the data change event happens.
+
+mapTrigger (pre)
+
+mapListner (post)
+
+IN 12c we have
+EventInterceptor (both pre and post, cache lifecycle ...)
+
+ObservableEvent has been implmented on NamedCache.
+
+Map Listener .... exectues async in respond to CRUD operations. Can be used with filters to selectvely process data.
+
+
+Developed by implmeneing MapListener. Can extend AbstractMapListerner and selectilvey implement merhods.
+
+
+
+Synthetics Events - events origniated within the cache (not CRUD opersions). Ex Expiry, Evicted...
+
+
+ObservableMap - ability to observe chnage to cachen. Similear to java bean event listerner.
+
+
+- can be registerd programaitcally (iva addMapListener) or decialiterviely via a cache config.
+
+
+*** Exception sin the grid (server side) are RunTime excpetions and fail silently after logging. Are not sent across netowk, as there is no client. Need to be handled carefully without affecting the cluster.
+
+
+
+the liteFlag will if set true, will not return the before/after values from the grid to the app server. if lite false, there will be more network traffic.
+
+
+----------------
+
+
+Map Listener (This is post):
+
+
+Practice.05.01.solution
+
+
+        
+        customerCache.addMapListener(new AddStateMapListener(),new MapEventFilter(MapEventFilter.E_INSERTED,
+     	       new EqualsFilter("getAddress.getState","CA")),false);
+
+        
+		
+		
+*** since false (i.e Lite), the MapEvent Object in the Listener will contain both the before and after value.
+
+if true, the MapEvent object would have the event id details, but not the before and after value.
+
+
+
+
+		
+--
+		
+Map Trigger: (Pre)
+
+executes before data chagnes and synchornoolsy.
+
+used to validate, modify or reject an operation.
+
+in the process method we write the logic.
+
+
+Practice.05.02.solution
+
+
+package retail.trigger;
+
+
+import com.oracle.education.retail.Item;
+import com.tangosol.util.MapTrigger;
+
+public class ToLowerMapTrigger implements MapTrigger {
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public void process(Entry entry) {
+		System.out.println("\n\nProcess('" + entry + "')");
+		
+		Object o = entry.getValue();
+		if (o != null && (o instanceof Item )) {
+			Item i= (Item)o;
+			String sku = i.getSku();
+			i.setSku(sku.toLowerCase());
+			entry.setValue(i);
+		}
+	}
+
+	public boolean equals(Object o) {
+		return o != null && o.getClass() == this.getClass();
+	}
+
+	public int hashCode() {
+		return getClass().getName().hashCode();
+	}
+
+}
+
+
+
+
+
+Adding the trigger..
+
+        ToLowerMapTrigger trigger = new ToLowerMapTrigger();
+        MapTriggerListener listener = new MapTriggerListener(trigger);
+        itemCache.addMapListener(listener);
+
+
+
+
+
+--
+
+Live Event Inteceptors:
+
+Handles both Pre, Post and Grid level events.
+
+should be registers declaratively only.
+
+has more detailed events... INSERT, INSERTING, INSERTED.
+
+
+
+---
+
+
+Contineous Query Cache (CQC):
+
+a local cache that is contatntly updated as data changes.
+
+basd on existing cache and filter.
+
+useful for ...Real time cosoles (updates a GUI screen if the data is updated on the grid).
+
+ContineuousQueryCache mycache = new ContineuousQueryCache( ... filters...);
+
+
+
+-------------
+
+
+
+Querying and Aggregating Data in the Cache:
+-------------------------------------------
+
+- Filter
+- CQL
+- Aggregations
+- Explain Plans
+
+
+
+Filters and Caches:
+-------------------
+
+Caches are easily access via get operations, but only sing keys (and set of keys).
+
+filters can access a cache sing identiires, object attributes or cominations via the QueryMap interface.
+
+QueryMap returns a Set of objcts based on a filter.
+
+
+keySet  -> will return only the filterd keys
+entrySet - will return the key/value.
+
+
+
+
+Practice.06.01.solution
+
+
+
+		System.out.println("\nCache is loaded\n");
+		Filter stateFilter = new EqualsFilter("getAddress.getState","CA");
+		
+		//
+		// TODO: Complete the Customer comparator
+		//
+		Set<Map.Entry>  entries = customerCache.entrySet(null,new CustomerComparator());
+        int allSize = entries.size();
+
+
+
+		
+		
+		
+we can also combine filter with key + other values  (Customer id and city ).
+		
+
+
+--
+
+Paging and LimitFilters.... retreive s aingle result... like cursors in DB.
+
+--
+
+Aggregating Results ... ex. avg of salary. like map reduce.
+
+Main aggregator and Parallel aggregators.
+
+
+
+Practice.06.02.solution
+
+
+----
+
+
+Filters & Indexes:
+----------------------
+
+
+INdexes are maintained by the Cache Entry owner (Primary Nodes).
+
+Sorted index affects the performance of the filters.
+
+NamedCache trades = getCache...
+
+trades.addIndex(new ReflectionExtractor("getCity"), true, soring comparator);
+
+Filter myfilter =  new LikeFIlter ("getCity", "C%");
+
+Set myobjects =  trades.entrySet(myFilter);
+
+
+
+INdex will be created in the same Cache objct, and not a separate Cache object.
+
+JOINS and ORDER by are not supporteed.
+
+COMPOSIT indiex are not supported.
+
+
+--------------------------
+
+
+Coh QL :
+-------------
+
+like SQL
+
+can be used iether progrmatically or from command line
+
+QueryHelper.
+
+
+in CQL we refer to the attribute name directly. In programaticllay, we refeer to the getter methods.
+
+THere is no SCHEMA like RDBMS tables.
+
+Nodes -> Partition -> Cache.
+
+
+
+for COmmand line we use . Query.cmd
+
+------------------------
+
+
+
+
+Query Optimization: Explain Plans and Trace:
+------------------------------------------
+
+
+Explain plan - estimated cost of query
+Trace - Actual cost of qeury excution
+
+
+Query can be evaludated in command line (Query.cmd) or in the code.
+EXPLAIN PLAN FOR ...
+TRACE SELECT...
+
+
+THe Cost here is EVAL_COST (1000) x the number of rows scanned.
+
+Duration is in msecs
+
+Effectiveness is % is the rows filtered.
+
+
+-------------------------------------------------------------
+
+Managing Data Consistency and Transactions:
+--------------------------------------------
+
+TrasactionScheme and Transaction Framework.
+
+JCA Adapter for joiing and manageing XA Transctions.
+
+*Used when we are using Cache for write operations.
+
+
+myCache.lock("A", -1);  //-1 is indefinte lock.
+
+
+
+
+***** In the industry, if Coherence is used for write we should use "ENTRY PROCESSOR" and not "PUT".
+
+
+Entry Processes has a lot more function for concurrency and locks... etc.
+
+95% of the time in the Industry, Entry Processor is used.
+
+
+Concurrent Map can also be used here for concurrent updates.
+
+--
+
+
+mycache.invokeAll( filters, new myProcessor());
+
+mycache.invoke(....)... for one rec
+
+
+
+
+cache.invoke(key, new ConditionalPut(new NotFilte ..., airport );
+
+
+If we want to put create our own Custom Processes, we create a class which extends teh AbstractProcessor;
+
+
+
+
+Entry processor essentiall has READ COMMMITTED isoliation, and quues the updates with same key.
+
+
+Inside the Custom Entry processor, we will not use the PUT command, but instead the Entry.operatiosn<> ...
+
+
+Practice.07.01.solution
+
+
+
+import com.oracle.education.retail.Order;
+import com.tangosol.util.InvocableMap.Entry;
+import com.tangosol.util.processor.AbstractProcessor;
+
+public class DiscountEntryProcessor extends AbstractProcessor {
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public Object process(Entry entry) {
+		System.out.println("Called");
+		Order order = (Order)entry.getValue();
+
+		StringBuffer sb = new StringBuffer();
+		sb.append("Order [").append(order.getId()).append("] Changed:");
+		sb.append("\torderTotal before=").append(order.getOrderTotal());
+		order.setOrderTotal((float)(order.getOrderTotal() * .9));
+		entry.setValue(order);                         ./////// this set the value in the cache.
+		sb.append("\torderTotal after=").append(order.getOrderTotal());
+		System.out.println(sb.toString());
+
+		return null;
+	}
+}
+
+--
+
+
+
+Invocation Service:
+----------------------
+
+allow sou to executea an egent on cluster memebers.
+
+does not execute again data entries in the cache.
+
+
+ex. if you want to know the free space avaiable and mangaemnet tasks.
+
+
+
+
+we can write sampel to tell which members owns a given key.
+
+Iternate the keys, and this commeand will display ht emember
+
+Member m = ((DistribuedCacheService) person.getCacheSErvice()).getKeyOwner(p.gtKey());
+
+m.getId() -> will display the member owning this key.
+
+
+
+
+
+---------------------------------------------------------------
+
+
+Day 4:
+----------------
+
+Integrating a Data Source with Coherence.
+
+
+Coherences by default does not persist or load data to disk or database.
+
+COherenece can load daat from or persists to any source by implemeint the CacheLoader or CacheStore interfaces.
+
+
+CacheLoader
+load() and loadAll() ... are called explicitely. when there is a get(), getAll() or entrySet(). So when we try to receive data from OC, it will internal call load to fetch from the external data store.
+
+
+CacheStore
+load
+loadAll
+store    --- put, entrySet
+storeAll
+erase
+eraseAll
+
+
+
+These methods will call the corresponding JDBC or Hiberante custom code.
+
+
+
+OC supports JPA, Oracle TopLink, Hibernate, EclipseLink
+
+
+Based on Business requirements and Tech design we need to decide which  data integration pattern to use.
+1. Developer using custom ESB to do the load and sync up
+2. Use OC features to speak wit hthe exteranl Data source.
+
+
+
+----
+
+
+Typically, the OC Cache has a one to one mapping to an Entity Class. So if we have many Entities, there will be corresponding OC Caches.
+
+
+The Hibernate Entity objects is compatible, and can be directly loaded to the OC Cache. 
+
+
+---
+
+
+
+CacheLoaders Initializzation
+
+
+public CustomerCacheLoader implements CacheLoader.
+
+
+In the config...
+
+cache-store-scheme.xml 
+
+<class-name>...CustomCacheLoader</class-name>
+
+
+
+
+
+CacheStores opens a data connections, we can use connection pool from an applicaiton server.
+
+
+
+1. COnfiguring JPA (persistance.xml)
+
+2. Entitle Annotations
+
+3. Config the details in the cachestore-scheme
+
+
+
+There are 3 init params in the cache store for the CacheLoader implement name.
+1. Cache Name
+2. full qualified corespdoning entity name (com.boa.entity.Customer)
+3. The persistene unit (persistance.xml).
+
+
+
+Sample Demo:
+------------
+
+1. Install Oracle DB. 
+
+SQL> conn coherence/COHERENCE
+
+
+>connect
+
+
+Refer Practice.09.01.solution for solution.
+
+
+
+
+
+-------------------
+
+
+Coherences and Databases (with Golden Gate)
+---------------------------------------------
+
+Coherence as the system of record, and backed up by a Database as seen in the above examples (Cachestore). External system can get stale data, if external data update DB directly.
+
+
+Shared Database as System of Record between OC and Application. Stale data issue.
+
+
+To reoslve this stale data issue... we use GoldenGate.
+
+Solves the database to choenrece stale data problem. 
+
+Is event drinven and has low latendcy. Requires little or no app changes.
+
+
+GoldenGate is an real time ETL tool, and integraed with Ocacle, DB2, and other DBs, and also with non database sysem such as OC.
+
+
+12c has Hot cache adapters.
+
+Captres (Txn logs) -> Transformsm -> Distributes -> Deliver.
+
+TopLink and JPA has adapters for Golden Gate.
+
+
+In outside the cluster, it has to use Proxy and *Extend to connect. If inside the cluster and coonect directly.
+
+
+
+OC GoldenGate hotcache contains two componnets -
+1. CacheStore - Toplink or JPA usd by OC to read/write database records. This can be custommised.
+2. HotCache adapters - used to push DB changes to Coneherence. HOt Cache is the default provied. limited customizations.
+
+
+DB -> Golden Gate Proper -> GoldenGage Java Client - uses -> GoldGate Hot Cache Aapter -> Coherence cache.
+
+
+
+
+
+
+-------------------------------
+
+
+
+WebLogic and Coherenece:
+-----------------------------
+
+
+like EAR, we have GAR which will have the jar and config files which can be package and deployed.
+
+
+The WLS Admin has he management applications deploy which manages all th eother servers. No other client application will be deployed on this server.
+
+
+Other WLS, will have OC in a cluster.
+
+
+OC can be deployed in one of the below ways -
+1. Standalone - GARI is deplone int a server by itself.
+
+2. As JavaEE,
+	WAR will conain the Application code.
+	GAR will contain the OC details, and avalable to WAR.
+	EAR to package the WAR and EAR and other JavaEE resouces (EJB's).
+	
+	
+	
+
+
+
+Step1: Instlllation
+
+fmw_12.1.3.0.0_wls -> this is the weblogic setup.
+
+
+
+here we install WLS with Coherence complete.
+
+The OC12c used in the previous examples where standalong OC.
+
+This version we are installing the WLS + OC
+
+
+
+Step2: Create DOmain.
+
+
+Domain is a collection of all your resouces and servers.
+
+
+Open the Configuraiton Wizard again from Start menu.
+
+
+Hwere we can creat a Admin server, Node server or Managed server.
+
+
+AdminServer : 7001
+
+Domain Location 
+C:/Oracle/Middleware/OracleC12c/user_projects/domains/base_domain
+Admin Server URL 
+http://RPS-PC:7001/console
+
+
+
+
+Step 3: Create server and cluster.
+
+
+username; weblogic
+password:
+
+
+Create the below servers.
+
+
+	AdminServer(admin)	Configured			RUNNING	 OK	7001
+	AppServer1	Configured			Unknown	 Not reachable	8001
+	AppServer2	Configured			Unknown	 Not reachable	8003
+	DataServer1	Configured			Unknown	 Not reachable	8005
+	DataServer2	Configured			Unknown	 Not reachable	8007
+
+
+	
+Then create 2 clusters.
+
+
+	Name Sorted Ascending 	Cluster Address 	Cluster Messaging Mode 	Migration Basis 	Default Load Algorithm 	Replication Type 	Cluster Broadcast Channel 	Servers 
+	DataCluster		Unicast	Database	Round Robin	(None)		
+	WebCluster		Unicast	Database	Round Robin	(None)
+
+
+
+Step 4:
+
+Add server to clters
+
+Click on Cluster -> SErver -> Add
+
+
+To the web WebCluster... add AppServer1 and 2
+To the DataCluster add DataServer1 and 2
+
+
+
+
+
+	Name Sorted Ascending 	Type 	Cluster 	Machine 	State 	Health 	Listen Port 
+	AdminServer(admin)	Configured			RUNNING	 OK	7001
+	AppServer1	Configured	WebCluster		SHUTDOWN	 Not reachable	8001
+	AppServer2	Configured	WebCluster		SHUTDOWN	 Not reachable	8003
+	DataServer1	Configured	DataCluster		SHUTDOWN	 Not reachable	8005
+	DataServer2	Configured	DataCluster		SHUTDOWN	 Not reachable	8007
+	
+	
+	
+	
+	
+Step 5:
+
+To start the servers...
+
+C:\Oracle\Middleware\OracleC12c\user_projects\domains\base_domain\bin
+
+
+startManagedWebLogic.cmd AppServer1
+startManagedWebLogic.cmd AppServer2
+
+startManagedWebLogic.cmd DataServer1
+startManagedWebLogic.cmd DataServer2
+
+	
+	
+	
+	
+Name Sorted Ascending 	Type 	Cluster 	Machine 	State 	Health 	Listen Port 
+	AdminServer(admin)	Configured			RUNNING	 OK	7001
+	AppServer1	Configured	WebCluster		RUNNING	 OK	8001
+	AppServer2	Configured	WebCluster		RUNNING	 OK	8003
+	DataServer1	Configured	DataCluster		RUNNING	 OK	8005
+	DataServer2	Configured	DataCluster		RUNNING	 OK	8007	
+	
+	
+	
+	
+Step 6:
+Setting up the Coherence Cluster.
+
+
+Environment -> CoherenceCluster -> new CoherenceCluster (Unicast).
+
+select both Data and WEb Cluster ... which will include all the above server. 
+
+
+So far we have only setup JVMs.
+
+
+** AdminSever will not be part of anythig.
+
+
+Once we add the servers to Coherence clustres, the server will have support for OC, and the Coherence tab will appear inside the server.
+
+
+Step 7: Config as coherence.
+
+Now we have to configure the server for Coherence.
+
+Seerver -> AppSEver1 -> Coherenece -> Local Storage Enabled (set to false).
+Seerver -> AppSEver2 -> Coherenece -> Local Storage Enabled (set to false).
+	
+	
+
+	
+Step 8: Deployment.
+
+
+Click Deployment -> Install -> "C:\Bank of America\COH Labs\resources\Practice.12.01"  \ExampleEAR.ear
+
+	deploy on the WebCluster.
+	
+	
+Similarlary 
+
+C:\Bank of America\COH Labs\resources\Practice.12.01\ExampleGAR.gar  to the DataCluster.
+
+
+
+
+Now Actiavet changes.
+
+IN the dpeloyment... 
+
+	ExampleEAR Expand Node Enterprise Application ExampleEAR	Prepared	 OK	Enterprise Application	WebCluster	100
+	Coherence Archive ExampleGAR	Prepared	 OK	Coherence Archive	DataCluster	100	
+
+
+Closed Items:
+-----------------
+
+Expiry time??? Eviction policy. the eis an expiry delay basd on timestamp. in the cache config xml we can specify the exitry delay.
+
+Multple Query keys? Create indexes, no composite thou. 
+
+
+Industry use case?
+RBS is having 500GB of data stored in cache. This is only the data... not the replication, and RAM and JVM Heap size.
+
+
+Perstistance store?
+Backup of caches can be done periodically, which can be used to restore back.
+Elastice store... when the cache gets filled, the older data gets stored to the disk.
+Active persistance.
+
+
+
+
+
+-------------------------------------------------------------
+
+
+
+Open Items:
+-----------
+
+
+Create Objects Modelling?
+
+Comparisiong with JCache, EHCache, Teracotta, Tinestan?
+
+Replication - 
+
+Implemenations -> 1st implementation is read, and only later write. for read focus on a smaller population.
+
+elastic feature?
+
+WKA (well know addresses).
+
+Maintaining Partitions in a heap.
+
+
+Multipleas Clsuters across data centers?
+
+Local Storage: is coherence cache data that is collated in the same JVM application. 
+
+
+Mainteannce and Scalablity.
+
+---
+
+Java TEch:
+
+
+public interface Entity<T> {
+
+	public T getId();
+	public String toString();
+}
+
+will force the implemenation to implmement variables (i.e. Id), and methods.
+
+

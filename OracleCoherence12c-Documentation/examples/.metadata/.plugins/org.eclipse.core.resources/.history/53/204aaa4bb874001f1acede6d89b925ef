@@ -1,0 +1,41 @@
+package com.oracle.education.coherence.examples;
+
+import java.net.URISyntaxException;
+
+import com.tangosol.io.pof.PortableObjectSerializer;
+import com.tangosol.io.pof.SimplePofContext;
+import com.tangosol.net.CacheFactory;
+import com.tangosol.net.NamedCache;
+import com.tangosol.util.Base;
+import com.tangosol.util.Binary;
+import com.tangosol.util.ExternalizableHelper;
+
+public class TestAirlineSerializer extends Base {
+
+	public static void main(String[] args) {
+
+        CacheFactory.ensureCluster();
+
+        
+        SimplePofContext ctx = new SimplePofContext();
+        ctx.registerUserType(1000, AirPort.class ,new AirPortSerializer());
+	
+
+        NamedCache cache=
+                     CacheFactory.getCache("airports");
+
+        cache.clear();
+        
+
+        AirPort apIn = new AirPort(1, "LGN", "Boston","Boston Logan Airport" ,"USA");
+        
+        
+        cache.put(apIn.getId(),apIn);
+        
+        
+        AirPort apOut = (AirPort)cache.get(apIn.getId());
+        
+        System.out.println("Reurned " + apOut);
+	}
+
+}

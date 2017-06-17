@@ -1,0 +1,12 @@
+
+//Management Server JMX Settings
+-Dtangosol.coherence.management=all
+-Dcom.sun.management.jmxremote
+
+//Managed Server JMX Settings
+-Dtangosol.coherence.management.remote=true
+
+//Management Server Reporter Settings
+-Dtangosol.coherence.management.report.configuration=reports/report-all.xml
+-Dtangosol.coherence.management.report.autostart=true
+

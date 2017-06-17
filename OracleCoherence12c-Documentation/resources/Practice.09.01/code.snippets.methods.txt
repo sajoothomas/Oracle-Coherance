@@ -1,0 +1,37 @@
+	public void erase(Object oKey) {
+		System.out.println("\n\n\n+++++++++++++++++++");
+		System.out.println("CustomerCachestore.erase('"+oKey+"') called ");
+		System.out.println("+++++++++++++++++++\n\n\n");
+
+		Collection<Long> keys = new LinkedList<Long>();
+		if ( oKey instanceof Long)
+			keys.add((Long)oKey);
+		deleteCustomers(keys);	
+	}
+	
+	@Override
+	public void eraseAll(Collection colKeys) {
+		deleteCustomers(colKeys);
+	}
+
+	@Override
+	public void store(Object oKey, Object oValue) {
+		System.out.println("\n\n\n+++++++++++++++++++");
+		System.out.println("CustomerCachestore.store('"+oKey+"','"+oValue+"') called ");
+		System.out.println("+++++++++++++++++++\n\n\n");
+
+		Collection<Customer> customers = new LinkedList<Customer>();
+		if ( oValue instanceof Customer) {
+			customers.add((Customer) oValue);
+		}
+		saveCustomers(customers);
+	}
+
+	@Override
+	public void storeAll(Map mapEntries) {
+	Iterator it = mapEntries.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        store(pair.getKey(),pair.getValue());
+	    }
+         }

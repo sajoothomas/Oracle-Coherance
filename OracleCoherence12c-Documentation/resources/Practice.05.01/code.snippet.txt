@@ -1,0 +1,17 @@
+	public void entryInserted(MapEvent event) {
+                System.out.println("\n\n+++entryInserted++++\n");
+		printEvent(event);
+		
+		Object o = event.getNewValue();
+		if (! ( o instanceof Customer ) ) {
+			return;
+		}
+		
+		Customer customer = (Customer)o;
+		System.out.println("Received insert of customer " + customer);
+		Address address = customer.getAddress();
+		
+		String stateName = address.getState();
+		State newState = new State(stateName);
+		queuedPut(newState);
+	}

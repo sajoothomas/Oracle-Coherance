@@ -1,0 +1,17 @@
+INDEX VERSION 1.126+D:\Oracle\student\examples\.metadata\.plugins\org.eclipse.jdt.core
+4092846543.index
+3050108287.index
+1789169078.index
+3730526690.index
+2439164147.index
+3270002986.index
+1925869810.index
+3184959502.index
+2594609853.index
+1674092712.index
+1881744089.index
+1235418488.index
+3000053649.index
+2695252587.index
+4032895246.index
+2877109961.index

@@ -1,0 +1,57 @@
+code,city,name,country
+ADL,Adelaide International,Adelaide,AU
+AMS,Amsterdam,Amsterdam-schiphol,NL
+AOJ,Aomori,Aomori,JP
+ARN,Stockholm,Arlanda,SE
+ASP,Alice Springs,Alice Springs,AU
+BCN,Barcelona,El Prat De Llobregat,ES
+BGO,Bergen,"Bergen Airport, Flesland",NO
+BOS,Boston,Logan International,US
+BRS,Bristol,Bristol,GB
+CDG,Paris,Charles De Gaulle,FR
+CPT,Cape Town,Cape Town International,ZA
+DEL,New Delhi,Indira Gandhi Intl,IN
+DUB,Dublin,Dublin,IE
+DUR,Durban,Durban International,ZA
+EIN,Eindhoven,Eindhoven,NL
+FLU,New York,Flushing,US
+FRA,Frankfurt,Frankfurt International Airport (Rhein-Main),DE
+GCJ,Johannesburg,International,ZA
+GOI,Goa,Dabolim,IN
+GSE,Gothenburg,Gothenburg City Airport,SE
+HEM,Helsinki,Helsinki-malmi,FI
+HRE,Harare,Harare,ZW
+HYD,Hyderabad,Rajiv Gandhi Airport,IN
+IAD,Dulles,Washington Dulles Intl,US
+ICN,Seoul,Seoul (Incheon),KR
+JFK,New York,John F Kennedy Intl,US
+KIX,Osaka,Kansai International,JP
+LAX,Los Angeles,Los Angeles International,US
+LED,St Petersburg,Pulkovo,RU
+LGA,New York,La Guardia,US
+LGW,London,Gatwick,GB
+LHR,London,Heathrow,GB
+LYS,Lyon,Satolas,FR
+MAD,Madrid,Barajas,ES
+MAN,Manchester,Manchester,GB
+MIA,Miami,Miami International Airport,US
+MUC,Munich,Franz Josef Strauss,DE
+NCE,Nice,Cote d'Azur International Airport,FR
+ORD,Chicago,O'Hare International,US
+OSL,Oslo,"Oslo Airport, Gardermoen",NO
+PAD,Paderborn,Paderborn,DE
+SFO,San Francisco,San Francisco International,US
+SNN,Shannon,Shannon,IE
+SVG,Stavanger,Sola,NO
+SVO,Moscow,Sheremetyevo,RU
+SYD,Sydney,Kingsford Smith,AU
+TMP,Tampere,Tampere-Pirkkala,FI
+TRD,Trondheim,Vaernes,NO
+VAA,Vaasa,Vaasa,FI
+VFA,Victoria Falls,Victoria Falls,ZW
+VLL,Valladolid,Valladolid,ES
+VVO,Vladivostok,Vladivostok,RU
+YOK,Yokohama,Yokohama,JP
+YOW,Ottawa,Ottawa International,CA
+YVR,Richmond,Vancouver Intl,CA
+YYZ,Toronto,Lester B. Pearson International,CA

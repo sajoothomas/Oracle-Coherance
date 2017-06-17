@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.ui.externaltools.ProgramLaunchConfigurationType">
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="d:\Oracle\jdk1.6.0_20\bin\java.exe"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="-server -showversion -Xms128m -Xmx128m -cp ${project_loc};D:\oracle\coherence\lib\coherence.jar com.tangosol.net.DefaultCacheServer"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="d:\Oracle\coherence\bin"/>
+</launchConfiguration>

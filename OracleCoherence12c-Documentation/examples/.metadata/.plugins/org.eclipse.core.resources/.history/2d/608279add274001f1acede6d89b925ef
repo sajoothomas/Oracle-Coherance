@@ -1,0 +1,56 @@
+package com.oracle.education.coherence.examples;
+
+import java.io.IOException;
+
+import com.tangosol.io.pof.PofContext;
+import com.tangosol.io.pof.PofHelper;
+import com.tangosol.io.pof.PofReader;
+import com.tangosol.io.pof.PofSerializer;
+import com.tangosol.io.pof.PofWriter;
+
+public class AirPortSerializer implements PofSerializer {
+
+
+
+	@Override
+	public Object deserialize(PofReader reader) throws IOException {
+		
+		for ( int i = 0; i < 10; i++)
+			System.out.println("AirlineSerializer called to de-serialize something");
+		PofContext ctx = reader.getPofContext();
+		Class target = ctx.getClass(reader.getUserTypeId());
+		
+		if (target.getName() != AirPort.class.getName()) {
+			throw new IOException("can only deserialize AirPort instances");
+		}
+		
+		int id = reader.readInt(0);
+		String code = reader.readString(1);
+		String city = reader.readString(2);
+		String name = reader.readString(3);
+		String country = reader.readString(4);
+		reader.readRemainder();
+		
+		return new AirPort(id,code,city,name,country);
+	}
+
+	@Override
+	public void serialize(PofWriter writer, Object o) throws IOException {
+		
+		for ( int i = 0; i < 10; i++)
+			System.out.println("AirlineSerializer called to serialize something");
+
+		if ( !(o instanceof AirPort)) {
+			throw new IOException ("Can only serialize AirPort instances");
+		}
+		
+		AirPort ap = (AirPort )o;
+		
+		writer.writeInt(0,ap.getId());
+		writer.writeString(1,ap.getCode());
+		writer.writeString(2,ap.getCity());
+		writer.writeString(3,ap.getName());
+		writer.writeString(4,ap.getCountry());
+	}
+
+}

@@ -1,0 +1,55 @@
+
+CACHE CONFIGURATION SNIPPETS:
+    <near-scheme>
+      <scheme-name>MyNearScheme</scheme-name>
+      
+      <front-scheme>
+        <local-scheme/>
+      </front-scheme>
+      
+      <back-scheme>
+        <remote-cache-scheme>
+          <scheme-ref>MyExtendTCPScheme</scheme-ref>
+        </remote-cache-scheme>
+      </back-scheme>
+      
+    </near-scheme>
+	
+	
+    <remote-cache-scheme>
+      <scheme-name>MyExtendTCPScheme</scheme-name>
+      <service-name>ExtendTcpCacheService</service-name>
+      <initiator-config>
+        <tcp-initiator>
+          <remote-addresses>
+            <socket-address>
+              <address>localhost</address>
+              <port>9099</port>
+            </socket-address>
+          </remote-addresses>
+        </tcp-initiator>
+      </initiator-config>
+    </remote-cache-scheme>
+
+	
+    <cache-mapping>
+      <cache-name>near-*</cache-name>
+      <scheme-name>MyNearScheme</scheme-name>
+    </cache-mapping>
+
+    
+    <cache-mapping>
+      <cache-name>*</cache-name>
+      <scheme-name>MyExtendTCPScheme</scheme-name>
+    </cache-mapping>
+
+JAVA EXTEND CLIENT CODE SNIPPETS:
+
+	NamedCache myCache = CacheFactory.getCache(cacheName);
+	
+	myCache.put(cust.getId(), cust);
+	
+	cust = (Customer)myCache.get(cust.getId());
+	
+	CacheFactory.shutdown();
+	

@@ -1,0 +1,4 @@
+<cache-mapping>
+    <cache-name>Customers</cache-name>
+    <scheme-name>CustomBackingMapScheme</scheme-name>
+</cache-mapping>

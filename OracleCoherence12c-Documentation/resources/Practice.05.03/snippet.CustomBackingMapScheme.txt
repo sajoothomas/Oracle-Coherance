@@ -1,0 +1,21 @@
+ <distributed-scheme>
+         <scheme-name>CustomBackingMapScheme</scheme-name>
+         <service-name>DistributedCache</service-name>
+           	<backing-map-scheme>
+           	<local-scheme>
+ 				<listener> 
+			       <class-scheme>
+			       <class-name>retail.listener.EchoingBackingMapListener</class-name>
+			        	<init-params>
+			        		<init-param>
+			        			<param-type>com.tangosol.net.BackingMapManagerContext</param-type>
+			        			<param-value>{manager-context}</param-value>
+			        		</init-param>
+     					</init-params>
+    				</class-scheme>
+	   			</listener>
+	   			</local-scheme>	
+      	</backing-map-scheme>
+
+      	<autostart>true</autostart>
+    </distributed-scheme>

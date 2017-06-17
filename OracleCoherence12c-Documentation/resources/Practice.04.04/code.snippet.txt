@@ -1,0 +1,26 @@
+
+    <cache-mapping>
+      <cache-name>*</cache-name>
+      <scheme-name>MyNearScheme</scheme-name>
+    </cache-mapping>
+
+    <near-scheme>
+      <scheme-name>MyNearScheme</scheme-name>
+
+      <front-scheme>
+        <local-scheme>
+          <eviction-policy>HYBRID</eviction-policy>
+          <high-units>100</high-units>
+          <expiry-delay>1m</expiry-delay>
+        </local-scheme>
+      </front-scheme>
+
+      <back-scheme>
+        <distributed-scheme>
+          <scheme-ref>MyPartitionedScheme</scheme-ref>
+        </distributed-scheme>
+      </back-scheme>
+
+      <invalidation-strategy>present</invalidation-strategy>
+      <autostart>true</autostart>
+    </near-scheme>

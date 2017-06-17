@@ -1,0 +1,9 @@
+
+    <cache-mapping>
+      <cache-name>*</cache-name>
+      <scheme-name>MyLocalCachingScheme</scheme-name>
+    </cache-mapping>
+
+    <local-scheme>
+      <scheme-name>MyLocalCachingScheme</scheme-name>
+    </local-scheme>

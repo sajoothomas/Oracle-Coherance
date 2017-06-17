@@ -1,0 +1,5 @@
+public CustomerCachestore(String connectionInfo,
+                          String uName, String pwd) { 
+ super(connectionInfo, uName, pwd); 
+
+}

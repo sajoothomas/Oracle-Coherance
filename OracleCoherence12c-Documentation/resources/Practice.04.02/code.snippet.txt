@@ -1,0 +1,17 @@
+    <cache-mapping>
+      <cache-name>*</cache-name>
+      <scheme-name>MyReplicatedScheme</scheme-name>
+    </cache-mapping>
+
+    <replicated-scheme>
+      <scheme-name>MyReplicatedScheme</scheme-name>
+      <service-name>ReplicatedCache</service-name>
+
+      <backing-map-scheme>
+        <local-scheme>
+          <scheme-ref>MyLocalCachingScheme</scheme-ref>
+        </local-scheme>
+      </backing-map-scheme>
+
+      <autostart>true</autostart>
+    </replicated-scheme>
