@@ -2836,7 +2836,7 @@ Step 6:
 Setting up the Coherence Cluster.
 
 
-Environment -> CoherenceCluster -> new CoherenceCluster (Unicast).
+Environment -> CoherenceCluster -> new CoherenceCluster (Multicast).
 
 select both Data and WEb Cluster ... which will include all the above server. 
 
@@ -2883,10 +2883,492 @@ IN the dpeloyment...
 	Coherence Archive ExampleGAR	Prepared	 OK	Coherence Archive	DataCluster	100	
 
 
+	
+	
+	
+	ExampleEAR Expand Node Enterprise Application ExampleEAR	Active	 OK	Enterprise Application	WebCluster	100
+	Coherence Archive ExampleGAR	Active	 OK	Coherence Archive	DataCluster	100
+
+
+
+
+
+Step 9:
+
+Access the applcation
+
+http://localhost:8001/example-web-app/faces/ContactList.jsp
+
+
+under server, deployments... we can also get the servlets urls.
+
+
+
+
+
+
+------------------------------------
+
+Coherence*Extend
+-----------------------
+
+
+extnds the reach of the core coherence TCMP cluster to a wider range of consuemrs.
+
+
+allows applications to access conherence clusters wihtout being a member of the cluster.
+
+In the cluster example, the members speak via TCMP protocol.
+
+Any client which connect from outside are called Cohenrec*Extend client
+
+With Coherence*Extend there is no:
+in process transport. WIll not use TCMP.
+Cluster and service membership (not a part of the cluster).
+Data ownership (only near cache can be configured).
+
+
+
+The client should also icnlude the coherence.jar and cache-config.xml is required. (The coherence server cluster details xml shouls not be shared).
+
+The cache -config.xml will hav einfo on how to connect to the proxy server... and also to setup the near cache.
+
+Client ( uses named cached , using Extend will invoke )   - TCP ->  Proxy member (Extend Proxy (INvocation & Cache Service & Cluster service)) -> Cluster Member (Primary, Backup, Logical).
+
+
+
+
+*Extend Advantage
+-----------------
+
+- direct access to the data gride for non java applications.
+
+- access to multiple data grids from a single application. (member can be part of only one cluster.). Using *extend client we can connect to multiple data grids.
+
+- lightweight native client library.
+
+
+When to use?
+Thick clients deploed on destop.
+Non Java access to data grid.
+Access to data gride over high latency, restricted firewalled netwokros.
+
+
+
+
+
+From the Applicatoin Process Server, can we expose a Web REST Service directly? Yes, ths is possible. Both approach have advanegae and disadvanges.
+
+Search for Conerence Incubator ... to get lot of samples.
+
+Steps:
+1. Create cluster side cache config.  Only the proxy member should have this.
+
+<proxy-scheme>
+...
+	<tcp-acceptor>
+		has the tcp proxy and port ...
+
+
+		we are planning 3 proxy node member... all 3 IP host details will be specified here.
+		
+		
+		
+The client will uses this proxy ip and port to connect.
+
+
+2. Client side cache config descriptor
+
+
+<remote-cache-schme>
+	<tcp-inititor>
+		will have multple proxy nodes to connect to... or Load balance address.
+		
+		
+		
+		
+3. Launching *Extend-enabled DefaultCacheServer Process and Client.
+
+
+java -cp coherence.jar ...... server side cache config (cluster side). As the proxy server is configured here... it will start a proxy node member.
+
+
+java -cp client.jar... where the conherence.jar and config will be in it class path.
+
+
+
+
+Simplifying configures...instead ofthe cache config proxy details...
+we can use address provide refrences
+or Naming service. 
+
+
+
+**Always run proxy server wth Storage disabled.
+** Never run Near Cache on Proxy SEver. (Client side can have the near cache).
+** Run Multiple proxies.
+
+
+
+
+
+
+*Extends example:
+
+
+
+Step 1 
+Practice.11.01.solution -> Proxy Cluster node example.
+
+cache cofig xml
+
+<?xml version="1.0"?>
+
+<!DOCTYPE cache-config SYSTEM "cache-config.dtd">
+
+<cache-config>
+
+  <caching-scheme-mapping>
+    <cache-mapping>
+      <cache-name>*</cache-name>
+      <scheme-name>MyPartitionedScheme</scheme-name>
+    </cache-mapping>
+  </caching-scheme-mapping>
+
+  <caching-schemes>
+    <distributed-scheme>
+      <scheme-name>MyPartitionedScheme</scheme-name>
+      <service-name>DistributedCache</service-name>
+
+      <backing-map-scheme>
+        <local-scheme/>
+      </backing-map-scheme>
+
+      <autostart>true</autostart>
+    </distributed-scheme>
+        
+    <invocation-scheme>
+      <scheme-name>example-invocation</scheme-name>
+      <service-name>InvocationService</service-name>
+
+      <autostart>true</autostart>
+    </invocation-scheme>
+    
+    <proxy-scheme>
+      <scheme-name>MyExtendProxyScheme</scheme-name>
+      <service-name>ExtendTcpProxyService</service-name>
+      <thread-count>50</thread-count>
+
+      <acceptor-config>
+        <tcp-acceptor>
+          <local-address>
+            <address>localhost</address>
+            <port>9099</port>
+            <reusable>true</reusable>
+          </local-address>
+        </tcp-acceptor>
+      </acceptor-config>
+
+      <serializer>
+        <class-name>com.tangosol.io.pof.ConfigurablePofContext</class-name>
+      </serializer>
+      
+      <autostart>true</autostart>
+    </proxy-scheme>
+  </caching-schemes>
+
+</cache-config>
+
+
+
+and start the proxy server..
+
+
+Run Config...
+
+-Xms128m -Xmx128m -Dtangosol.coherence.override=C:\Oracle\classpath\tangosol-coherence-override-dev.xml -Dtangosol.coherence.cacheconfig=C:\git\Oracle-Coherance\Practice.11.01.solution\config\coherence-cache-config.xml
+
+
+
+
+
+Group{Address=224.12.1.1, Port=12100, TTL=0}
+
+MasterMemberSet(
+  ThisMember=Member(Id=1, Timestamp=2017-06-18 11:48:54.127, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2628, Role=CoherenceServer)
+  OldestMember=Member(Id=1, Timestamp=2017-06-18 11:48:54.127, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2628, Role=CoherenceServer)
+  ActualMemberSet=MemberSet(Size=1
+    Member(Id=1, Timestamp=2017-06-18 11:48:54.127, Address=192.168.5.174:8088, MachineId=33010, Location=site:,machine:RPS-PC,process:2628, Role=CoherenceServer)
+    )
+  MemberId|ServiceVersion|ServiceJoined|MemberState
+    1|12.1.2|2017-06-18 11:48:54.127|JOINED
+  RecycleMillis=1200000
+  RecycleSet=MemberSet(Size=0
+    )
+  )
+
+TcpRing{Connections=[]}
+IpMonitor{Addresses=0}
+
+2017-06-18 11:48:57.401/4.520 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:Management, member=1): Service Management joined the cluster with senior service member 1
+2017-06-18 11:48:57.428/4.547 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=1): Loaded Reporter configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/reports/report-group.xml"
+2017-06-18 11:48:57.628/4.748 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=DistributedCache, member=1): Service DistributedCache joined the cluster with senior service member 1
+2017-06-18 11:48:57.656/4.775 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Invocation:InvocationService, member=1): Service InvocationService joined the cluster with senior service member 1
+2017-06-18 11:48:57.758/4.877 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Proxy:ExtendTcpProxyService, member=1): Loaded POF configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/pof-config.xml"
+2017-06-18 11:48:57.780/4.899 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Proxy:ExtendTcpProxyService, member=1): Loaded included POF configuration from "jar:file:/C:/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar!/coherence-pof-config.xml"
+2017-06-18 11:48:57.911/5.030 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=Proxy:ExtendTcpProxyService:TcpAcceptor, member=1): TcpAcceptor now listening for connections on 192.168.5.174:9099
+2017-06-18 11:48:57.946/5.065 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Proxy:ExtendTcpProxyService:TcpAcceptor, member=1): Started: TcpAcceptor{Name=Proxy:ExtendTcpProxyService:TcpAcceptor, State=(SERVICE_STARTED), ThreadCount=50, HungThreshold=0, TaskTimeout=0, Codec=Codec(Format=POF), Serializer=com.tangosol.io.DefaultSerializer, PingInterval=0, PingTimeout=0, RequestTimeout=0, SocketProvider=com.oracle.common.internal.net.MultiplexedSocketProvider@57146eaf, LocalAddress=WrapperSocketAddressProvider{Providers=[[RPS-PC/192.168.5.174:9099]]}, SocketOptions{LingerTimeout=0, KeepAliveEnabled=true, TcpDelayEnabled=false}, ListenBacklog=0, BufferPoolIn=BufferPool(BufferSize=2KB, BufferType=DIRECT, Capacity=Unlimited), BufferPoolOut=BufferPool(BufferSize=2KB, BufferType=DIRECT, Capacity=Unlimited)}
+2017-06-18 11:48:57.949/5.068 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=Proxy:ExtendTcpProxyService, member=1): Service ExtendTcpProxyService joined the cluster with senior service member 1
+2017-06-18 11:48:57.958/5.077 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=NameService:TcpAcceptor, member=1): TcpAcceptor now listening for connections on 192.168.5.174:8088.3
+2017-06-18 11:48:57.959/5.078 Oracle Coherence GE 12.1.2.0.0 <D5> (thread=NameService:TcpAcceptor, member=1): Started: TcpAcceptor{Name=NameService:TcpAcceptor, State=(SERVICE_STARTED), ThreadCount=0, Codec=Codec(Format=POF), Serializer=com.tangosol.net.internal.NameServicePofContext, PingInterval=0, PingTimeout=0, RequestTimeout=0, SocketProvider=com.oracle.common.internal.net.MultiplexedSocketProvider@57146eaf, LocalAddress=WrapperSocketAddressProvider{Providers=[WrapperSocketAddressProvider{Providers=[Address=192.168.5.174:8088]}]}, SocketOptions{LingerTimeout=0, KeepAliveEnabled=true, TcpDelayEnabled=false}, ListenBacklog=0, BufferPoolIn=BufferPool(BufferSize=2KB, BufferType=DIRECT, Capacity=Unlimited), BufferPoolOut=BufferPool(BufferSize=2KB, BufferType=DIRECT, Capacity=Unlimited)}
+2017-06-18 11:48:57.961/5.080 Oracle Coherence GE 12.1.2.0.0 <Info> (thread=main, member=1): 
+Services
+  (
+  ClusterService{Name=Cluster, State=(SERVICE_STARTED, STATE_JOINED), Id=0, Version=12.1.2, OldestMemberId=1}
+  InvocationService{Name=Management, State=(SERVICE_STARTED), Id=1, Version=12.1.2, OldestMemberId=1}
+  PartitionedCache{Name=DistributedCache, State=(SERVICE_STARTED), LocalStorage=enabled, PartitionCount=257, BackupCount=1, AssignedPartitions=257, BackupPartitions=0}
+  InvocationService{Name=InvocationService, State=(SERVICE_STARTED), Id=3, Version=12.1.2, OldestMemberId=1}
+  ProxyService{Name=ExtendTcpProxyService, State=(SERVICE_STARTED), Id=4, Version=12.1.2, OldestMemberId=1}
+  )
+
+Started DefaultCacheServer...
+
+
+
+
+
+Step 2:
+Practice.11.02.solution -> Client example.
+
+
+
+<?xml version="1.0"?>
+
+<!DOCTYPE cache-config SYSTEM "cache-config.dtd">
+
+<cache-config>
+
+  <caching-scheme-mapping>
+    <cache-mapping>
+      <cache-name>near-*</cache-name>
+      <scheme-name>MyNearScheme</scheme-name>
+    </cache-mapping>
+    
+    <cache-mapping>
+      <cache-name>*</cache-name>
+      <scheme-name>MyExtendTCPScheme</scheme-name>
+    </cache-mapping>
+  </caching-scheme-mapping>
+
+  <caching-schemes>
+    <near-scheme>
+      <scheme-name>MyNearScheme</scheme-name>
+      
+      <front-scheme>
+        <local-scheme/>
+      </front-scheme>
+      
+      <back-scheme>
+        <remote-cache-scheme>
+          <scheme-ref>MyExtendTCPScheme</scheme-ref>
+        </remote-cache-scheme>
+      </back-scheme>
+      
+      <autostart>true</autostart>
+    </near-scheme>
+    
+    <remote-cache-scheme>
+      <scheme-name>MyExtendTCPScheme</scheme-name>
+      <service-name>ExtendTcpCacheService</service-name>
+      <initiator-config>
+        <tcp-initiator>
+          <remote-addresses>
+            <socket-address>
+              <address>localhost</address>
+              <port>9099</port>
+            </socket-address>
+          </remote-addresses>
+        </tcp-initiator>
+      </initiator-config>
+    </remote-cache-scheme>
+  </caching-schemes>
+
+</cache-config>
+
+
+Run Config...
+
+-Xms128m -Xmx128m -Dtangosol.coherence.override=C:\Oracle\classpath\tangosol-coherence-override-dev.xml -Dtangosol.coherence.cacheconfig=C:\git\Oracle-Coherance\Practice.11.01.solution\config\coherence-cache-config.xml
+
+
+
+
+when running, we can pass diff arguments... to see the pefromrnace diff.
+
+1. -cache myCache
+
+2. -cache nearCache.
+
+
+
+
+*Extend Client Code ... it will be same as OC code... So the client dev should be familar with OC APIs... and also a Near cache will be maintained in the client JVM.
+
+
+import com.oracle.education.retail.Address;
+import com.oracle.education.retail.Customer;
+import com.tangosol.net.CacheFactory;
+import com.tangosol.net.NamedCache;
+
+public class JavaExtendClient {
+
+	public static void main(String[] args) {
+		StopWatch stopWatch = new StopWatch();
+
+		// Switch this with one of the following and note the differences:
+		// near-myCache - map to near local cache that uses extend*tcp for the back tier
+		// myCache
+		String cacheName = "myCache"; // map directly to extend*tcp by default
+		int count = 5;
+
+		for (int opts = 0; opts < args.length; opts++) {
+			if ("-cache".equalsIgnoreCase(args[opts])) cacheName = args[opts + 1];
+		}
+
+		// Create 1 of each cache type
+		NamedCache myCache = CacheFactory.getCache(cacheName);
+
+		// Create the objects to put into cache
+		Address address = new Address("1313 Mockingbird Ln", "New York", "NY", "10001");
+		Customer cust = new Customer("John Doe", address);
+
+		// Store the object in cache
+		myCache.put(cust.getId(), cust);
+
+		// Read the object from each cache type and time it
+		System.out.println("==================================================");
+		stopWatch.start();
+		for (int i = 0; i < count; i++) {
+			cust = (Customer)myCache.get(cust.getId());
+		}
+		stopWatch.stop();
+		System.out.println("Time for " + cacheName + " get():" + stopWatch.toString(count));
+
+		// Update the object in each cache type and time it
+		System.out.println("==================================================");
+		stopWatch.start();
+		for (int i = 0; i < count; i++) {
+			myCache.put(cust.getId(), cust);
+		}
+		stopWatch.stop();
+		System.out.println("Time for " + cacheName + " put():" + stopWatch.toString(count));
+
+		System.out.println("==================================================");
+		CacheFactory.shutdown();
+	}
+}
+
+
+
+---
+
+
+Two Clusters  - hot/hot? This has be be implementd using *Extends.... Both Clusters speak to each other via the *Extend and PRoxy server.
+
+The Developer has to wriate a *Extend client code to push write updates to sync up the other cluster.
+
+
+--
+
+Near Cache ... not part of the cluster... and part of the App server JVM.
+
+Runs closers to the Client code.
+
+Can specify the limit... so it will not exceed the size. Evicition policy and stale data applies.
+
+
+
+
+*** PRoxy member does not store any metadata... it will directly forward the reques to any member node.
+So the min 3 hops are in the Proxy setup
+
+*** For Cluste rmember setup, there will be min 2 hops.
+
+*** For Replicate setup ther eis only 1 hop
+
+--------------------
+
+Day 5:
+
+
+
+Coherence Architecture:
+-------------------------
+
+Evoloution.
+
+1. Vertical Scalablity. both application and database.
+
+2. Horizontal scalability.
+
+Srogate/IO was a bottleneck.
+
+3. but that was not enought, so applicaiton sarted using Local Caching Pattern.
+
+4. with localcaching infromation was not sistend acros servers, so caching was distributed.
+
+5. Intoructing the caching infrastracture layer. Caching become a distinct resource, so that resource becomae a new layer. (in addition to the database).
+
+
+6. Cache Aside Patterns - depends on developers... use both db and cache.
+
+
+7. read thru
+
+8. write aside pattern. (both cache and db udates)
+
+9. External update pattern...MQ get the message, and we update both the cache and DB.
+
+
+
+
+----------------------------------
+
+Coherence Secuirty:
+---------------------
+
+
+Coherence cluster membership is automric....... making it easy for malicious clients to connect.
+
+To solve this, in the OC cluster congiruation setupp.... we can programatically and declaratively control access.
+
+Encrypt network connectsion (2 way SSL).
+
+
+Use config... 
+- member identify. Always explicitey mention cluster name.
+- use authorized hosts to recits other host. The ip address are mentioed (or range) in the tangosol-conerence.xml.
+- accesscontrol. Custom java code... which will verify he user in LDAP.
+
+
+class MyAccessController implments AccessController {
+
+refere..... SecurtyEx project.
+
+
+
+
+
+
+
+
+	
 Closed Items:
 -----------------
 
 Expiry time??? Eviction policy. the eis an expiry delay basd on timestamp. in the cache config xml we can specify the exitry delay.
+
+FOr WAS, what configs are needed?
 
 Multple Query keys? Create indexes, no composite thou. 
 
@@ -2911,6 +3393,7 @@ Active persistance.
 Open Items:
 -----------
 
+Example... what was the parititions?
 
 Create Objects Modelling?
 
@@ -2926,8 +3409,6 @@ WKA (well know addresses).
 
 Maintaining Partitions in a heap.
 
-
-Multipleas Clsuters across data centers?
 
 Local Storage: is coherence cache data that is collated in the same JVM application. 
 
@@ -2947,4 +3428,8 @@ public interface Entity<T> {
 
 will force the implemenation to implmement variables (i.e. Id), and methods.
 
+
+---
+
+Java Thread Pool, at container?
 
