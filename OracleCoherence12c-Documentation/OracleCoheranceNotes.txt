@@ -1,5 +1,8 @@
 Oracle Coherance:
 -----------------
+
+rathisanjeev72@gmail.com
+
  
 Day 1
 ====================================
@@ -3390,30 +3393,93 @@ Active persistance.
 
 
 
-Open Items:
------------
-
 Example... what was the parititions?
 
-Create Objects Modelling?
+4 node cluster ... 2 data nodes, 2 app nodes.
+
+Default 257 ... so one was 128, and other was 127
+
+we can change he partition size, based on the cluster and no of nodes, and the size of the data.
+
+Google for more info on this.
+
+
+
+In a Data Cache server... 1/3 rd for data. Keep the remaining for JVM, Backup and Scratch Node. 
+
+Oracle recommended 60 to 70% of RAM for HEap size. 
+
+ex 4GB heap ... we use 1.3GB for Primary, 1.3GB for Backup, Rest for Index, Scratch, JVM...
+
+
+The partiiction size should be conservate... not too big and not too small.
+
+
+
+in OC 12.12version, upto 500 stroage nodes are permitted in a cluster.  
+
+
+--------------
+
+
+
+Maintainablity:
+
+If the cache object changes, when using POF withevoloable, we do nt need to clear the cache, it will be backward compatible.
+
+We dploy to one node, and sequently in sequeunce to all the nodes.
+
+--
+
+Scalablity.
+
+Adding new data notes to a cluster.... OC will automaitcally tae care of balancing the data to the new node.
+
+For partition size changes, we ahve to bring down the nodes. 
+
+
+----------------
+
+Competitors:
 
 Comparisiong with JCache, EHCache, Teracotta, Tinestan?
 
-Replication - 
+Competitors for OC are Gigaspace, SAP Hanna, MemSQL, EHCache.
+
+
+
+---
+
+Across Data centeres - 
+
+2 Clusters across data cetners, synced by *Extends.
+
+New 12c feature is Federated Architrecure.. which has active/active/passive - sync.
+
+12c.12.21 .. has most of these features.
+
+---
+
+
+Create Objects Modelling? We reuse the existing Business Object or Entity object.
+
+
+
+---
+
+
+Open Items:
+-----------
+
 
 Implemenations -> 1st implementation is read, and only later write. for read focus on a smaller population.
 
-elastic feature?
-
 WKA (well know addresses).
 
-Maintaining Partitions in a heap.
 
+elastic feature?
 
 Local Storage: is coherence cache data that is collated in the same JVM application. 
-
-
-Mainteannce and Scalablity.
 
 ---
 
